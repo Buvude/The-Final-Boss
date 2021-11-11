@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder;
+    public GameObject self, AnimationHolder, Boss;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,25 @@ public class PlayerMovement : MonoBehaviour
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
         self.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(Boss.GetComponent<BossBehavior>().phaseType==4)
+            {
+                Boss.GetComponent<BossBehavior>().phaseType = 0;
+            }
+            else
+            {
+                Boss.GetComponent<BossBehavior>().phaseType += 1;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Boss.GetComponent<BossBehavior>().phaseNumber += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Boss.GetComponent<BossBehavior>().debugFire();
+        }
     }
     /* private void OnTriggerEnter2D(Collider2D collision)
      {

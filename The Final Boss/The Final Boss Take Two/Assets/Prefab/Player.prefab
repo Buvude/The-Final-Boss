@@ -101,6 +101,7 @@ MonoBehaviour:
   speedMod: 10
   self: {fileID: 8533267980217467177}
   AnimationHolder: {fileID: 8277647877455781038, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
+  Boss: {fileID: 5280881194839818315, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
 --- !u!61 &8371877223196749827
 BoxCollider2D:
   m_ObjectHideFlags: 0
