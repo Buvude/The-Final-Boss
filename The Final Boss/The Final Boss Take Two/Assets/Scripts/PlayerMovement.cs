@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-        self.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
+        AnimationHolder.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if(Boss.GetComponent<BossBehavior>().phaseType==4)

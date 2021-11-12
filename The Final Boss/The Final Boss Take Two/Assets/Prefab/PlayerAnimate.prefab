@@ -38,21 +38,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6444030383882308113}
     m_Modifications:
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: Boss
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: AnimationHolder
+      value: 
+      objectReference: {fileID: 8277647877455781038}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.366513
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.325933
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.633072
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalRotation.w
@@ -81,6 +89,18 @@ PrefabInstance:
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250761395402602046, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250761395402602046, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 8d185ce0d84d0ee42984432646753215, type: 2}
+    - target: {fileID: 8250761395402602046, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8533267980217467177, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_Name

@@ -11,7 +11,7 @@ public class BossBehavior : MonoBehaviour
     //phaseNumber is the number of shots per attack fired, totalPhase is just to keep track of score at the end and maybe other stuff later
     public GameObject player, self, animationHolder;
     public List<GameObject> weaponType = new List<GameObject>();
-    public Animator bA;
+    public Animator bA, bAA;
     public Text monolaougeTXT;
     // Start is called before the first frame update
     void Start()
@@ -26,10 +26,10 @@ public class BossBehavior : MonoBehaviour
 
     }
     IEnumerator Monolouge()
-    {
-        
+    {     
         yield return new WaitForSeconds(5);
         monolaougeTXT.gameObject.SetActive(false);
+        bAA.SetTrigger("Side to side");
         
     }
     public void debugFire()
