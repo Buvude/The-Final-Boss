@@ -457,7 +457,10 @@ Transform:
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 82427cd (added basic animation and attack mechanics)
 --- !u!1001 &1234811989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -523,6 +526,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fae75d53f9cd9994d93e59c41b95f265, type: 3}
+<<<<<<< HEAD
+>>>>>>> parent of 82427cd (added basic animation and attack mechanics)
+=======
 >>>>>>> parent of 82427cd (added basic animation and attack mechanics)
 --- !u!1001 &143389924506931471
 PrefabInstance:
