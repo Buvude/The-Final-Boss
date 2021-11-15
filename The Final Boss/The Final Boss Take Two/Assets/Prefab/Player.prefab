@@ -102,6 +102,20 @@ MonoBehaviour:
   self: {fileID: 8533267980217467177}
   AnimationHolder: {fileID: 8277647877455781038, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
   Boss: {fileID: 5280881194839818315, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
+  playerShot: {fileID: 1022265594903397331, guid: e2daa40b99dddaa4ca00ec6ea51104dc, type: 3}
+  XPCounter: {fileID: 0}
+  HP: 1
+  storage: 1
+  mPMax: 1
+  atk: 1
+  playerbS: 1
+  playersS: 1
+  playerbD: 1
+  playersD: 1
+  playerbC: 1
+  playersC: 1
+  XP: 0
+  cooldownTime: 1
 --- !u!61 &8371877223196749827
 BoxCollider2D:
   m_ObjectHideFlags: 0

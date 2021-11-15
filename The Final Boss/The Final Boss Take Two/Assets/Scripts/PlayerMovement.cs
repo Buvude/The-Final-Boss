@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss;
+    public GameObject self, AnimationHolder, Boss, playerShot;
+    public Text XPCounter;
+    public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
+    public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
+    public int XP, cooldownTime;
+    private bool shootAgain=true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        XP = 0; 
     }
 
     // Update is called once per frame
@@ -38,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
         {
             Boss.GetComponent<BossBehavior>().debugFire();
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (shootAgain)
+            {
+                StartCoroutine("cooldown");
+                Instantiate(playerShot, AnimationHolder.transform);
+            }
+        }
     }
     /* private void OnTriggerEnter2D(Collider2D collision)
      {
@@ -55,9 +69,13 @@ public class PlayerMovement : MonoBehaviour
     {
            {
             Debug.Log("collision");
-            if (collision.gameObject.CompareTag("Boss"))
+            if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("BossProjectile"))
             {
                 PlayerDeath();
+            }
+            else if (collision.gameObject.CompareTag("PlayerProjectile"))
+            {
+
             }
             else
             {
@@ -69,5 +87,17 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerDeath()
     {
         Debug.Log("Add death soon ");
+        self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+    }
+    public void BasicAttackXPGain()
+    {
+        XP += atk * playerbS;
+        XPCounter.text = "XP: " + XP.ToString();
+    }
+    IEnumerator cooldown()
+    {
+        shootAgain = false;
+        yield return new WaitForSeconds(cooldownTime);
+        shootAgain = true;
     }
 }

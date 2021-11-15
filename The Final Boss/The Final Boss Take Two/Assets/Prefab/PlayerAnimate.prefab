@@ -43,6 +43,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: playerShot
+      value: 
+      objectReference: {fileID: 1022265594903397331, guid: e2daa40b99dddaa4ca00ec6ea51104dc, type: 3}
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: AnimationHolder
       value: 
       objectReference: {fileID: 8277647877455781038}

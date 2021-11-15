@@ -104,7 +104,11 @@ MonoBehaviour:
   player: {fileID: 8533267980217467177, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
   self: {fileID: 5280881194839818315}
   animationHolder: {fileID: 4870821223349126399, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+  weaponType: []
   bA: {fileID: 5840144710694774082}
+  bAA: {fileID: 0}
+  monolaougeTXT: {fileID: 0}
+  bAM: {fileID: 2475891482803987777, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
 --- !u!58 &1616578880
 CircleCollider2D:
   m_ObjectHideFlags: 0
