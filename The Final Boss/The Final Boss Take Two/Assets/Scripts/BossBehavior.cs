@@ -54,5 +54,18 @@ public class BossBehavior : MonoBehaviour
             animationHolder.transform.Translate(-additallup, 0f, 0f);
             bAM.toggleSidetoSideIdle();
         }
+        else if(phaseType==1)//big shot
+        {
+            float additallup = 0;
+            for (int i = 0; i < phaseNumber; i++)
+            {
+                additallup += player.transform.position.x - animationHolder.transform.position.x;//this should move the boss to the right position.
+                animationHolder.transform.Translate(player.transform.position.x - animationHolder.transform.position.x, 0f, 0f);
+                Instantiate(weaponType[phaseType], animationHolder.transform);
+                yield return new WaitForSeconds(2);
+            }
+            animationHolder.transform.Translate(-additallup, 0f, 0f);
+            bAM.toggleSidetoSideIdle();
+        }
     }
 }
