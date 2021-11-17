@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LazerAttack : MonoBehaviour
 {
+    public List<GameObject> Lazers;
+    public GameObject spawner, self;
+    public LazerSpawner lS;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +18,16 @@ public class LazerAttack : MonoBehaviour
     {
         
     }
+    public void spawn()
+    {
+        lS.spawn = true;
+        spawner.GetComponent<Animator>().SetTrigger("Spawn");
+    }
+    public void despawn()
+    {
+        lS.despawn = true;
+        lS.despawnB();
+    }
+
+
 }
