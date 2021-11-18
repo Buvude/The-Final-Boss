@@ -15,6 +15,8 @@ public class BossBehavior : MonoBehaviour
     public Text monolaougeTXT;
     private Vector3 startingPoint = new Vector3(0f, 8.97f, 0);
     public BossanimationManager bAM;
+    private LazerAttack lA;
+    //public LazerSpawner lS;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,11 +63,17 @@ public class BossBehavior : MonoBehaviour
             {
                 additallup += player.transform.position.x - animationHolder.transform.position.x;//this should move the boss to the right position.
                 animationHolder.transform.Translate(player.transform.position.x - animationHolder.transform.position.x, 0f, 0f);
-                Instantiate(weaponType[phaseType], animationHolder.transform);
+                Instantiate(weaponType[1], animationHolder.transform);
                 yield return new WaitForSeconds(2);
             }
             animationHolder.transform.Translate(-additallup, 0f, 0f);
             bAM.toggleSidetoSideIdle();
+        }
+        else if (phaseType == 2)
+        {
+            Instantiate(weaponType[2]);
+            lA = GameObject.Find("SpawnHolder").GetComponent<LazerAttack>();
+            lA.spawn();
         }
     }
 }

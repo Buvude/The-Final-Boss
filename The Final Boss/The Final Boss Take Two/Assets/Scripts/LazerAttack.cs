@@ -7,6 +7,7 @@ public class LazerAttack : MonoBehaviour
     public List<GameObject> Lazers;
     public GameObject spawner, self;
     public LazerSpawner lS;
+    public BossBehavior bB;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class LazerAttack : MonoBehaviour
         {
             lS.spawn = true;
             lS.despawnB();
+            Debug.Log("post spawn message");
         }
     }
     public void despawn()
@@ -33,6 +35,10 @@ public class LazerAttack : MonoBehaviour
             lS.despawn = true;
             lS.despawnB();
         }
+    }
+    public void shoot()
+    {
+
     }
 
 

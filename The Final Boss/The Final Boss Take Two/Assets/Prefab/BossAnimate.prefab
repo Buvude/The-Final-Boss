@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingSpeed: 10
-  Player: {fileID: 0}
+  Player: {fileID: 8277647877455781038, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
   self: {fileID: 4870821223349126399}
   bAA: {fileID: 212799994}
   bB: {fileID: 1727039396781864347}
@@ -149,6 +149,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 212799994}
     - target: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
+      propertyPath: bAM
+      value: 
+      objectReference: {fileID: 2475891482803987777}
+    - target: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
@@ -179,7 +183,7 @@ PrefabInstance:
     - target: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
       propertyPath: weaponType.Array.data[2]
       value: 
-      objectReference: {fileID: 1022265594903397331, guid: fae75d53f9cd9994d93e59c41b95f265, type: 3}
+      objectReference: {fileID: 5406469100736710425, guid: 05187f47f4b42c446afab0ec5d371c27, type: 3}
     - target: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
       propertyPath: weaponType.Array.data[3]
       value: 
