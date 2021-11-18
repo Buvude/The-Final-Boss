@@ -20,13 +20,19 @@ public class LazerAttack : MonoBehaviour
     }
     public void spawn()
     {
-        lS.spawn = true;
-        spawner.GetComponent<Animator>().SetTrigger("Spawn");
+        if (!lS.spawn && !lS.despawn)
+        {
+            lS.spawn = true;
+            lS.despawnB();
+        }
     }
     public void despawn()
     {
-        lS.despawn = true;
-        lS.despawnB();
+        if (!lS.spawn && !lS.despawn)
+        {
+            lS.despawn = true;
+            lS.despawnB();
+        }
     }
 
 
