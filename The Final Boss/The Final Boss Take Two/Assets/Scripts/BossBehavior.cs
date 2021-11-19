@@ -71,8 +71,10 @@ public class BossBehavior : MonoBehaviour
         }
         else if (phaseType == 2)
         {
-            Instantiate(weaponType[2]);
-            lA = GameObject.Find("SpawnHolder").GetComponent<LazerAttack>();
+            GameObject temp;
+            temp=Instantiate(weaponType[2]);
+            lA=temp.gameObject.GetComponentInChildren<LazerAttack>();
+            Debug.Log(lA.ToString());
             lA.spawn();
         }
     }
