@@ -7,11 +7,11 @@ public class LazerAttack : MonoBehaviour
     public List<GameObject> Lazers;
     public GameObject spawner, self;
     public LazerSpawner lS;
-    public BossBehavior bB;
+    private BossBehavior bB;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bB = GameObject.Find("BossAnimate").GetComponentInChildren<BossBehavior>();
     }
 
     // Update is called once per frame
@@ -39,17 +39,35 @@ public class LazerAttack : MonoBehaviour
     IEnumerator Shoot()
     {
         Debug.Log("Corutine started");
-        for (int i = 0; i < bB.phaseNumber+1; i++)
+        for (int i = 0; i < bB.phaseNumber; i++)
         {
-            GameObject[] cloneGO=new GameObject[5];
-            Lazers.CopyTo(cloneGO);
-            Debug.Log(cloneGO.Length.ToString());
+            List<GameObject> cloneGO = new List<GameObject>(Lazers);
+            //Debug.Log(cloneGO.Length.ToString());
             yield return new WaitForSeconds(1);
-            Debug.Log("start first for loop");
+            //Debug.Log("start first for loop");
             int tempRandHold;
             tempRandHold=Random.Range(0, 5);
             Debug.Log(tempRandHold.ToString());
             Debug.Log(Lazers.Count.ToString());
+            cloneGO.RemoveAt(tempRandHold);
+            foreach(GameObject item in cloneGO)//holy shit this loop actually worked? I should not be suprised but still...
+            {
+                item.GetComponent<Animator>().SetTrigger("Charge");
+            }
+            yield return new WaitForSeconds(5);
+            
+            /*if (tempRandHold != 4)
+            {
+                for (int ii = tempRandHold - 1; ii < cloneGO.Length; ii++)
+                {
+
+                }
+                
+            }
+            else
+            {
+
+            }*/
             /*for (int ii = 0; ii < Lazers.Count; ii++)
             {
 
@@ -62,7 +80,7 @@ public class LazerAttack : MonoBehaviour
 
             }*/
         }
-        //despawn();
+        despawn();
         
     }
     public void startCRShoot()

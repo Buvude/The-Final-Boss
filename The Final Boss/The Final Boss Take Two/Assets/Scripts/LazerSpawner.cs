@@ -11,11 +11,12 @@ public class LazerSpawner : MonoBehaviour
     public Vector3[] WayPoints = new Vector3[3];
     public GameObject self, despawnObject;
     public LazerAttack lA;
-    public BossBehavior bB;
+    private BossBehavior bB;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bB = GameObject.Find("BossAnimate").GetComponentInChildren<BossBehavior>();
+        Debug.Log("boss animate should be set...");
     }
 
     // Update is called once per frame

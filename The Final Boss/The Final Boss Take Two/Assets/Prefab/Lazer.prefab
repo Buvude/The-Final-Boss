@@ -362,7 +362,7 @@ MonoBehaviour:
   spawner: {fileID: 7369862671113945104}
   self: {fileID: 5406469100736710425}
   lS: {fileID: 565683904}
-  bB: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
+  bB: {fileID: 0}
 --- !u!1 &6239400479734239200
 GameObject:
   m_ObjectHideFlags: 0

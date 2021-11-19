@@ -9,7 +9,7 @@ public class BossBehavior : MonoBehaviour
 {
     public int phaseNumber, phaseType, totalPhase;//Phase type: 0=basic, 1= big, 2=Lazer, 3=vortex, 4=safe Zone
     //phaseNumber is the number of shots per attack fired, totalPhase is just to keep track of score at the end and maybe other stuff later
-    public GameObject player, self, animationHolder;
+    public GameObject player, self, animationHolder,temp;
     public List<GameObject> weaponType = new List<GameObject>();
     public Animator bA, bAA;
     public Text monolaougeTXT;
@@ -71,7 +71,7 @@ public class BossBehavior : MonoBehaviour
         }
         else if (phaseType == 2)
         {
-            GameObject temp;
+            
             temp = Instantiate(weaponType[2]);
             lA = temp.gameObject.GetComponentInChildren<LazerAttack>();
             //Debug.Log(lA.ToString());
@@ -80,7 +80,7 @@ public class BossBehavior : MonoBehaviour
     }
     public void postLazer()
     {
-        Destroy(lA.lS.despawnObject);
+        Destroy(temp);
         bAM.toggleSidetoSideIdle();
     }
 }
