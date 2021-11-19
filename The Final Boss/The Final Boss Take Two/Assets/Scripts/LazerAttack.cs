@@ -24,7 +24,7 @@ public class LazerAttack : MonoBehaviour
         if (!lS.spawn && !lS.despawn)
         {
             lS.spawn = true;
-            lS.despawnB();
+            lS.SpawnB();
             Debug.Log("post spawn message");
         }
     }
@@ -36,9 +36,39 @@ public class LazerAttack : MonoBehaviour
             lS.despawnB();
         }
     }
-    public void shoot()
+    IEnumerator Shoot()
     {
+        Debug.Log("Corutine started");
+        for (int i = 0; i < bB.phaseNumber+1; i++)
+        {
+            GameObject[] cloneGO=new GameObject[5];
+            Lazers.CopyTo(cloneGO);
+            Debug.Log(cloneGO.Length.ToString());
+            yield return new WaitForSeconds(1);
+            Debug.Log("start first for loop");
+            int tempRandHold;
+            tempRandHold=Random.Range(0, 5);
+            Debug.Log(tempRandHold.ToString());
+            Debug.Log(Lazers.Count.ToString());
+            /*for (int ii = 0; ii < Lazers.Count; ii++)
+            {
 
+                if (ii != tempRandHold)
+                {
+                    Debug.Log("You have made it far young one");
+                    Lazers[ii].GetComponent<Animator>().SetTrigger("Charge");
+                }
+                yield return new WaitForSeconds(5f);
+
+            }*/
+        }
+        //despawn();
+        
+    }
+    public void startCRShoot()
+    {
+        Debug.Log("If you've gotten this far, how has corutine not started?");
+        _ = StartCoroutine("Shoot");
     }
 
 

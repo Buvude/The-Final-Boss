@@ -30,17 +30,17 @@ public class BossBehavior : MonoBehaviour
 
     }
     IEnumerator Monolouge()
-    {     
+    {
         yield return new WaitForSeconds(5);
         monolaougeTXT.gameObject.SetActive(false);
         bAA.SetTrigger("Side to side");
-        
+
     }
     public void debugFire()
     {
         StartCoroutine("Fire");
     }
-    
+
     IEnumerator Fire()
     {
         if (phaseType == 0)//basic shot
@@ -56,7 +56,7 @@ public class BossBehavior : MonoBehaviour
             animationHolder.transform.Translate(-additallup, 0f, 0f);
             bAM.toggleSidetoSideIdle();
         }
-        else if(phaseType==1)//big shot
+        else if (phaseType == 1)//big shot
         {
             float additallup = 0;
             for (int i = 0; i < phaseNumber; i++)
@@ -72,10 +72,15 @@ public class BossBehavior : MonoBehaviour
         else if (phaseType == 2)
         {
             GameObject temp;
-            temp=Instantiate(weaponType[2]);
-            lA=temp.gameObject.GetComponentInChildren<LazerAttack>();
-            Debug.Log(lA.ToString());
+            temp = Instantiate(weaponType[2]);
+            lA = temp.gameObject.GetComponentInChildren<LazerAttack>();
+            //Debug.Log(lA.ToString());
             lA.spawn();
         }
+    }
+    public void postLazer()
+    {
+        Destroy(lA.lS.despawnObject);
+        bAM.toggleSidetoSideIdle();
     }
 }

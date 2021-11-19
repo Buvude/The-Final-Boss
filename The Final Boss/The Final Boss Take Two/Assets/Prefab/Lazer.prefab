@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4113771361395476146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1461,6 +1461,7 @@ MonoBehaviour:
   - {x: -15.757704, y: 1.24, z: 0}
   - {x: -1.8418522, y: 7.6212406, z: 0}
   self: {fileID: 7369862671113945104}
+  despawnObject: {fileID: 5406469100736710425}
   lA: {fileID: 5364552723647333428}
   bB: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
 --- !u!95 &565683905
@@ -1547,7 +1548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1623178232077456493
 RectTransform:
   m_ObjectHideFlags: 0
