@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4794926099845918700}
   - component: {fileID: 1977195028113366868}
+  - component: {fileID: 961462321023320784}
   m_Layer: 0
   m_Name: Big Shot
   m_TagString: BossProjectile
@@ -26,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1022265594903397331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2200195450961369577}
   m_Father: {fileID: 0}
@@ -46,6 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 1022265594903397331}
   speed: 5
+--- !u!70 &961462321023320784
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022265594903397331}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &7586026649362637163
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 7586026649362637163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.3218284, y: 7.4821877, z: 1}
   m_Children: []
   m_Father: {fileID: 4794926099845918700}
   m_RootOrder: 0
@@ -117,7 +134,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: -3337038689812066966, guid: ae4fbde4e28cba346ae86e8bf20fb210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
