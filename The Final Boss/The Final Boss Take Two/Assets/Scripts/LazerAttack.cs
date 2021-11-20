@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LazerAttack : MonoBehaviour
 {
+    
     public List<GameObject> Lazers;
     public GameObject spawner, self;
     public LazerSpawner lS;
@@ -53,6 +54,8 @@ public class LazerAttack : MonoBehaviour
             foreach(GameObject item in cloneGO)//holy shit this loop actually worked? I should not be suprised but still...
             {
                 item.GetComponent<Animator>().SetTrigger("Charge");
+                //item.GetComponentInParent<AudioSource>().Play();
+                self.GetComponent<AudioSource>().Play();
             }
             yield return new WaitForSeconds(5);
             
@@ -88,6 +91,7 @@ public class LazerAttack : MonoBehaviour
         Debug.Log("If you've gotten this far, how has corutine not started?");
         _ = StartCoroutine("Shoot");
     }
+    
 
 
 }

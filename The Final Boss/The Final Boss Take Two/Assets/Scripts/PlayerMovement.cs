@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioSource Fire, Hit;
     public float speedMod = 1;
     private float horz, vert;
     public GameObject self, AnimationHolder, Boss, playerShot;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (shootAgain)
             {
+                Fire.Play();
                 StartCoroutine("cooldown");
                 Instantiate(playerShot, AnimationHolder.transform);
             }
@@ -86,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void PlayerDeath()
     {
+        Hit.Play();
         Debug.Log("Add death soon ");
         self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }

@@ -27,6 +27,7 @@ public class PlayerShot : MonoBehaviour
         Debug.Log("made it this far");
         if (collision.gameObject.CompareTag("Boss"))
         {
+            collision.gameObject.GetComponent<BossBehavior>().hit.Play();
             Debug.Log("Just passing through");
             player.BasicAttackXPGain();
             Destroy(self);

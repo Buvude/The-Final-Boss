@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
 {
+    public AudioSource synth, BigShot, BasicShot, Lazer, hit;
     public int phaseNumber, phaseType, totalPhase;//Phase type: 0=basic, 1= big, 2=Lazer, 3=vortex, 4=safe Zone
     //phaseNumber is the number of shots per attack fired, totalPhase is just to keep track of score at the end and maybe other stuff later
     public GameObject player, self, animationHolder,temp;
@@ -51,6 +52,7 @@ public class BossBehavior : MonoBehaviour
                 additallup += player.transform.position.x - animationHolder.transform.position.x;//this should move the boss to the right position.
                 animationHolder.transform.Translate(player.transform.position.x - animationHolder.transform.position.x, 0f, 0f);
                 Instantiate(weaponType[phaseType], animationHolder.transform);
+                BasicShot.Play();
                 yield return new WaitForSeconds(1);
             }
             animationHolder.transform.Translate(-additallup, 0f, 0f);
@@ -64,6 +66,7 @@ public class BossBehavior : MonoBehaviour
                 additallup += player.transform.position.x - animationHolder.transform.position.x;//this should move the boss to the right position.
                 animationHolder.transform.Translate(player.transform.position.x - animationHolder.transform.position.x, 0f, 0f);
                 Instantiate(weaponType[1], animationHolder.transform);
+                BigShot.Play();
                 yield return new WaitForSeconds(2);
             }
             animationHolder.transform.Translate(-additallup, 0f, 0f);
