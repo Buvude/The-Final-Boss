@@ -72,7 +72,7 @@ public class BossBehavior : MonoBehaviour
             animationHolder.transform.Translate(-additallup, 0f, 0f);
             bAM.toggleSidetoSideIdle();
         }
-        else if (phaseType == 2)
+        else if (phaseType == 2)//Lazer shot
         {
             
             temp = Instantiate(weaponType[2]);
