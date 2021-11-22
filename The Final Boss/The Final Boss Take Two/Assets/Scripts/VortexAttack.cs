@@ -24,7 +24,15 @@ public class VortexAttack : MonoBehaviour
     }
     public void destroySelf()
     {
+        Boss.GetComponent<Animator>().enabled = true;
         Boss.GetComponent<Animator>().SetTrigger("Side to side");
         Destroy(self);
+    }
+    public void startTheAttack()
+    {
+        VL1.SetTrigger("Go");
+        VL2.SetTrigger("Go");
+        VL3.SetTrigger("Go");
+        VL4.SetTrigger("Go");
     }
 }

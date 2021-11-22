@@ -629,7 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   self: {fileID: 9129314661304629619}
-  Boss: {fileID: 0}
   VA: {fileID: 306039401087568624}
   VL1: {fileID: 1210594377519864480}
   VL2: {fileID: 3107749417695800613}

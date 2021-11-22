@@ -80,6 +80,12 @@ public class BossBehavior : MonoBehaviour
             //Debug.Log(lA.ToString());
             lA.spawn();
         }
+        else if (phaseType == 3)//Vortex Shot
+        {
+            temp = Instantiate(weaponType[3]);
+            temp.GetComponent<Animator>().SetInteger("AttackAmount", phaseNumber);
+
+        }
     }
     public void postLazer()
     {
