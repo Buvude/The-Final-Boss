@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: AnimationHolder
       value: 
       objectReference: {fileID: 8277647877455781038}
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: Leveloutput.Array.size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -270,11 +274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2099
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2934
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4256862261653624111, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_LocalPosition.z
@@ -312,6 +316,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -7383654581080768481, guid: 79583f056021e024292c6731d68bd87a, type: 3}
+    - target: {fileID: 5172737379794147940, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8250761395402602046, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_BodyType
       value: 1

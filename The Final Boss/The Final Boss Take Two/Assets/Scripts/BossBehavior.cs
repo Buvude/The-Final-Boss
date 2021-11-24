@@ -59,6 +59,7 @@ public class BossBehavior : MonoBehaviour
         yield return new WaitForSeconds(5);
         monolaougeTXT.gameObject.SetActive(false);
         bAA.SetTrigger("Side to side");
+        player.GetComponentInChildren<PlayerMovement>().canMoveSet();
 
     }
     public void debugFire()
