@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1293722045}
   m_Layer: 0
   m_Name: Capsule (1)
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 888416919}
   m_Layer: 0
   m_Name: Capsule (3)
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 653649388}
   m_Layer: 0
   m_Name: Capsule (2)
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 1323266152}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

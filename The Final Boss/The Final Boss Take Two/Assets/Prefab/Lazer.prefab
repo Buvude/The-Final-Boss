@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 4768686460546236172}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1164,7 +1164,7 @@ GameObject:
   - component: {fileID: 5988532019839804820}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1543,7 +1543,7 @@ GameObject:
   - component: {fileID: 8145886614126780302}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1794,7 +1794,7 @@ GameObject:
   - component: {fileID: 5760138015283066222}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2173,7 +2173,7 @@ GameObject:
   - component: {fileID: 2990956988411013017}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: BossProjectile
+  m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

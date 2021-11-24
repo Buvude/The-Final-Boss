@@ -6,19 +6,24 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public List<Text> Leveloutput = new List<Text>();
-    public bool Immune=false;
+    public bool Immune=false, immuneSpriteActive=false;
     public AudioSource Fire, Hit;
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss, playerShot;
+    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite;
     public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
     public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
     public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, StorageCapacity=0;
+    public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
+    private int basicUpgradeExponential, specialUpgradeExponential, coreUpgradeExponential;
     private bool shootAgain=true, dead=false, canMove=false;
     // Start is called before the first frame update
     void Start()
     {
+        basicUpgradeExponential = basicUpgradeCost;
+        specialUpgradeExponential = specialUpgradeCost;
+        coreUpgradeExponential = coreUpgradeCost;
         XP = 0;
         nextPhaseXP = 20;
         NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
@@ -27,6 +32,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Immune && !immuneSpriteActive)
+        {
+            immuneSpriteActive = true;
+            invincableSprite.gameObject.SetActive(true);
+        }
+        if (!Immune && immuneSpriteActive)
+        {
+            immuneSpriteActive = false;
+            invincableSprite.gameObject.SetActive(false);
+        }
         /*
          * Bounds setting
          */
@@ -86,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         Leveloutput[7].text = "lvl: " + playersS.ToString();
         Leveloutput[8].text = "lvl: " + playersD.ToString();
         Leveloutput[9].text = "lvl: " + playersC.ToString();
+        
         /*
          * upgrade text end
          */
@@ -152,6 +168,15 @@ public class PlayerMovement : MonoBehaviour
         {
             playersC++;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            if (MP >= playerbD)
+            {
+                MP -= playerbD;
+                Sheild.GetComponent<Animator>().SetInteger("Shield Level", playerbD);
+                Sheild.SetActive(true);
+            }
+        }
 
 
     }
@@ -168,11 +193,11 @@ public class PlayerMovement : MonoBehaviour
          Debug.Log("Invalid Tag");
      }
  }*/ //Old version of what is below, I figured it out finially....
-private void OnTriggerEnter2D(Collider2D collision)
+private void OnTriggerStay2D(Collider2D collision)
     {
            {
             Debug.Log("collision");
-            if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("BossProjectile"))
+            if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("BossProjectile")||collision.gameObject.CompareTag("SpecialBossProjectile"))
             {
                 LossOfLife();
             }
