@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6444030383882308113}
   - component: {fileID: 1745771956}
   - component: {fileID: 1745771957}
+  - component: {fileID: 9149340908071399785}
   m_Layer: 0
   m_Name: PlayerAnimate
   m_TagString: Untagged
@@ -225,6 +226,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &9149340908071399785
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8277647877455781038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35a3159c6da5d3445aaa5e5196ee3ece, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2427356470133445204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,6 +349,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6200000, guid: 8d185ce0d84d0ee42984432646753215, type: 2}
     - target: {fileID: 8250761395402602046, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250761395402602046, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -360,7 +384,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1364416210846981280, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
 --- !u!4 &1926654936690296699 stripped
 Transform:
