@@ -108,21 +108,67 @@ public class PlayerMovement : MonoBehaviour
         {
             Boss.GetComponent<BossBehavior>().debugFire();
         }
-        
+        /*
+    * upgrades
+    * */
+       
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            HP++;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            atk++;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            mPMax++;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            storage++;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            playerbS++;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            playerbD++;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            playerbC++;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            playersS++;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            playersD++;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            playersC++;
+        }
+
+
     }
-    /* private void OnTriggerEnter2D(Collider2D collision)
+   
+/* private void OnTriggerEnter2D(Collider2D collision)
+ {
+     Debug.Log("collision");
+     if (collision.GetComponentInParent<GameObject>().CompareTag("Boss"))
      {
-         Debug.Log("collision");
-         if (collision.GetComponentInParent<GameObject>().CompareTag("Boss"))
-         {
-             PlayerDeath();
-         }
-         else
-         {
-             Debug.Log("Invalid Tag");
-         }
-     }*/ //Old version of what is below, I figured it out finially....
-    private void OnTriggerEnter2D(Collider2D collision)
+         PlayerDeath();
+     }
+     else
+     {
+         Debug.Log("Invalid Tag");
+     }
+ }*/ //Old version of what is below, I figured it out finially....
+private void OnTriggerEnter2D(Collider2D collision)
     {
            {
             Debug.Log("collision");
