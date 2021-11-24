@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
     public int XP, cooldownTime, nextPhaseXP, totalXP=0;
-    private bool shootAgain=true;
+    private bool shootAgain=true, dead=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +26,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (AnimationHolder.transform.position.x >= 15.76)
+        {
+            AnimationHolder.transform.Translate(-1f, 0, 0);
+        }
+        if (AnimationHolder.transform.position.x <= -15.77)
+        {
+            AnimationHolder.transform.Translate(1f, 0, 0);
+        }
+        if (AnimationHolder.transform.position.y >= 8.06)
+        {
+            AnimationHolder.transform.Translate(0, -1f, 0);
+        }
+        if (AnimationHolder.transform.position.y <= -8.03)
+        {
+            AnimationHolder.transform.Translate(0, 1f, 0);
+        }
         if (totalXP >= nextPhaseXP)
         {
             NextPhase();
@@ -100,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
             Hit.Play();
             Debug.Log("Add death soon ");
             self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            dead = true;
         }
     }
     public void BasicAttackXPGain()

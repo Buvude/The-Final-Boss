@@ -563,7 +563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next phase at  XP
+  m_Text: Next phase at  20 XP
 --- !u!222 &649548065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1353,17 +1353,25 @@ PrefabInstance:
       propertyPath: NextPhaseXPTXT
       value: 
       objectReference: {fileID: 649548064}
+    - target: {fileID: 1926654936690296699, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926654936690296699, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6444030383882308113, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6444030383882308113, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: 6444030383882308113, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.16
+      value: -8.03
       objectReference: {fileID: 0}
     - target: {fileID: 6444030383882308113, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: m_LocalPosition.z
