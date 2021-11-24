@@ -8,6 +8,7 @@ TagManager:
   - BossProjectile
   - PlayerProjectile
   - Spawner
+  - SafeZone
   layers:
   - Default
   - TransparentFX

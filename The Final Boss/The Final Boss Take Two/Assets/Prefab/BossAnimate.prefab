@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2137318355}
   - component: {fileID: 2137318356}
   - component: {fileID: 2137318358}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BossAnimate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,6 +548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5280881194839818315, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
       propertyPath: bA
       value: 
@@ -615,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 7745315554906919013, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
       propertyPath: weaponType.Array.data[4]
       value: 
-      objectReference: {fileID: 1022265594903397331, guid: fae75d53f9cd9994d93e59c41b95f265, type: 3}
+      objectReference: {fileID: 3395931243553891475, guid: 7bddf880d133916429d522e4e171da76, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b4220f84b306e4e9345bb037632508, type: 3}
 --- !u!4 &7753676920632060336 stripped

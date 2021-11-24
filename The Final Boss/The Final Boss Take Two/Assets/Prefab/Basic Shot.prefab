@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   self: {fileID: 1022265594903397331}
-  speed: 5
+  speed: 4
 --- !u!70 &5398602162854726974
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

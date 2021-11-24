@@ -10,10 +10,11 @@ public class BossBehavior : MonoBehaviour
     public AudioSource synth, BigShot, BasicShot, Lazer, hit;
     public int phaseNumber, phaseType, totalPhase;//Phase type: 0=basic, 1= big, 2=Lazer, 3=vortex, 4=safe Zone
     //phaseNumber is the number of shots per attack fired, totalPhase is just to keep track of score at the end and maybe other stuff later
-    public GameObject player, self, animationHolder,temp;
+    public GameObject player, self, animationHolder;
+    private GameObject temp;
     public List<GameObject> weaponType = new List<GameObject>();
     public Animator bA, bAA;
-    public Text monolaougeTXT;
+    public Text monolaougeTXT, currentPhase, nextPhase, totalPhaseTXT;
     private Vector3 startingPoint = new Vector3(0f, 8.97f, 0);
     public BossanimationManager bAM;
     private LazerAttack lA;
@@ -28,7 +29,30 @@ public class BossBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        totalPhaseTXT.text = "Total phases survived: " + totalPhase.ToString();
+        switch (phaseType)
+        {
+            case 0:
+                currentPhase.text = "Current phase: Basic shot";
+                nextPhase.text = "Next phase: Big shot";
+                break;
+            case 1:
+                currentPhase.text = "Current phase: Big shot";
+                nextPhase.text = "Next phase: Lazer cannons";
+                break;
+            case 2:
+                currentPhase.text = "Current phase: Lazer cannons";
+                nextPhase.text = "Next phase: Vortex";
+                break;
+            case 3:
+                currentPhase.text = "Current phase: Vortex";
+                nextPhase.text = "Next phase: Safe Zone";
+                break;
+            case 4:
+                currentPhase.text = "Current phase: Safe Zone";
+                nextPhase.text = "Next phase: Basic shot";
+                break;
+        }
     }
     IEnumerator Monolouge()
     {
@@ -85,6 +109,18 @@ public class BossBehavior : MonoBehaviour
             temp = Instantiate(weaponType[3]);
             temp.GetComponent<Animator>().SetInteger("AttackAmount", phaseNumber);
 
+        }
+        else if(phaseType==4)//Safe Zone Attack
+        {
+            for (int i = 0; i < phaseNumber; i++)
+            {
+                temp = Instantiate(weaponType[4]);
+                //temp.GetComponentInChildren<SZAttackCounter>().setNumber(phaseNumber);
+                yield return new WaitForSeconds(15f);
+            }
+            bAM.toggleSidetoSideIdle();
+
+            
         }
     }
     public void postLazer()

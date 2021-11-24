@@ -5,24 +5,31 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool Immune=false;
     public AudioSource Fire, Hit;
     public float speedMod = 1;
     private float horz, vert;
     public GameObject self, AnimationHolder, Boss, playerShot;
-    public Text XPCounter;
+    public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
     public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
-    public int XP, cooldownTime;
+    public int XP, cooldownTime, nextPhaseXP, totalXP=0;
     private bool shootAgain=true;
     // Start is called before the first frame update
     void Start()
     {
-        XP = 0; 
+        XP = 0;
+        nextPhaseXP = 20;
+        NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (totalXP >= nextPhaseXP)
+        {
+            NextPhase();
+        }
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
         AnimationHolder.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
@@ -73,34 +80,57 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("collision");
             if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("BossProjectile"))
             {
-                PlayerDeath();
+                LossOfLife();
             }
             else if (collision.gameObject.CompareTag("PlayerProjectile"))
             {
 
             }
-            else
+            else if(!collision.gameObject.CompareTag("SafeZone"))
             {
                 Debug.Log("Invalid Tag");
             }
         }  
     }
     
-    public void PlayerDeath()
+    public void LossOfLife()
     {
-        Hit.Play();
-        Debug.Log("Add death soon ");
-        self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        if (!Immune)
+        {
+            Hit.Play();
+            Debug.Log("Add death soon ");
+            self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
     }
     public void BasicAttackXPGain()
     {
         XP += atk * playerbS;
+        totalXP += atk * playerbS;
         XPCounter.text = "XP: " + XP.ToString();
+        totalXPTXT.text = "Total XP: " + totalXP.ToString();
     }
     IEnumerator cooldown()
     {
         shootAgain = false;
         yield return new WaitForSeconds(cooldownTime);
         shootAgain = true;
+    }
+    public void NextPhase()
+    {
+        if (Boss.GetComponent<BossBehavior>().phaseType == 4)
+        {
+            Boss.GetComponent<BossBehavior>().phaseType = 0;
+            Boss.GetComponent<BossBehavior>().phaseNumber++;
+            Boss.GetComponent<BossBehavior>().totalPhase++;
+            nextPhaseXP += 20 * Boss.GetComponent<BossBehavior>().phaseNumber;
+            NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
+        }
+        else
+        {
+            Boss.GetComponent<BossBehavior>().phaseType += 1;
+            Boss.GetComponent<BossBehavior>().totalPhase++;
+            nextPhaseXP += 20 * Boss.GetComponent<BossBehavior>().phaseNumber;
+            NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
+        }
     }
 }
