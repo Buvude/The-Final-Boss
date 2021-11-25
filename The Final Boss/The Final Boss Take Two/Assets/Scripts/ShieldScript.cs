@@ -27,6 +27,7 @@ public class ShieldScript : MonoBehaviour
         selfDestruct2.SetActive(false);
         if (otherOne.MadeInvincable)
         {
+            otherOne.MadeInvincable = false;
             otherOne.pm.Immune = false;
         }
     }
