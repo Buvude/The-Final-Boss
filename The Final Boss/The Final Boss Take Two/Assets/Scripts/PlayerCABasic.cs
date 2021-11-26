@@ -117,5 +117,9 @@ public class PlayerCABasic : MonoBehaviour
 
             }
         }
+        if (collision.gameObject.CompareTag("Boss") && fireing)
+        {
+            PM.CAXPGain();
+        }
     }
 }

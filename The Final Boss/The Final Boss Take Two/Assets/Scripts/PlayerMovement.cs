@@ -183,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3)&&CounterDone)// Basic Counter-Attack part 1/2
         {
+            //CounterDone = false;
             suckySucky.SetActive(true);
             StartCoroutine("CA");
             
@@ -219,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
         {
             CounterDone = true;
             suckySucky.SetActive(false);
+            suckySucky.GetComponent<Animator>().enabled = true;
         }
         
     }
@@ -280,7 +282,8 @@ private void OnTriggerStay2D(Collider2D collision)
     }
     public void CAXPGain()
     {
-        XP += playerbC * atk;
+        Boss.GetComponent<BossBehavior>().hit.Play();
+        XP += 3*playerbC * atk;
     }
     IEnumerator respawn()
     {
