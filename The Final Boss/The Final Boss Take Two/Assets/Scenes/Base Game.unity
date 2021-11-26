@@ -5575,7 +5575,7 @@ PrefabInstance:
       objectReference: {fileID: 395949222}
     - target: {fileID: 955862055216559304, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: Immune
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 955862055216559304, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: XPCounter
