@@ -11,6 +11,7 @@ TagManager:
   - SafeZone
   - Shield
   - SpecialBossProjectile
+  - CAA
   layers:
   - Default
   - TransparentFX

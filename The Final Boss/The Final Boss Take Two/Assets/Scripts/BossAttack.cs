@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossAttack : MonoBehaviour
 {
+    public bool sucked;
     public GameObject self;
     public float speed;
     // Start is called before the first frame update

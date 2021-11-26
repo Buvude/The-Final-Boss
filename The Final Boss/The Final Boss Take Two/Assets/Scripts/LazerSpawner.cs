@@ -26,11 +26,11 @@ public class LazerSpawner : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("BossProjectile")&&spawn)
+        if (collision.gameObject.CompareTag("SpecialBossProjectile")&&spawn)
         {
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         }
-        else if (collision.gameObject.CompareTag("BossProjectile") && despawn)
+        else if (collision.gameObject.CompareTag("SpecialBossProjectile") && despawn)
         {
             collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VortexAttack : MonoBehaviour
 {
+    public bool sucked;
     public GameObject self;
     private GameObject Boss;
     public Animator VA, VL1, VL2, VL3, VL4;

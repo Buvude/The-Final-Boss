@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LazerAttack : MonoBehaviour
 {
-    
+    public bool sucked;
     public List<GameObject> Lazers;
     public GameObject spawner, self;
     public LazerSpawner lS;

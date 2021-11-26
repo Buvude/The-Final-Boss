@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool CounterDone=true;
     public List<Text> Leveloutput = new List<Text>();
     public bool Immune=false, immuneSpriteActive=false;
     public AudioSource Fire, Hit;
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite;
+    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky;
     public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
     public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
-    public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, StorageCapacity=0;
+    public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage=0;
     public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
     private int basicUpgradeExponential, specialUpgradeExponential, coreUpgradeExponential;
     private bool shootAgain=true, dead=false, canMove=false;
@@ -93,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
          */
         Leveloutput[0].text =  HP.ToString();
         Leveloutput[1].text =  MP.ToString()+"/"+mPMax.ToString();
-        Leveloutput[2].text = StorageCapacity.ToString()+"/" + storage.ToString();
+        Leveloutput[2].text = ItemsInStorage.ToString()+"/" + storage.ToString();
         Leveloutput[3].text = "lvl: " + atk.ToString();
         Leveloutput[4].text = "lvl: " + playerbS.ToString();
         Leveloutput[5].text = "lvl: " + playerbD.ToString();
@@ -168,7 +169,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playersC++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        /*
+         * Abilities
+         * */
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))//Basic Sheild
         {
             if (MP >= playerbD)
             {
@@ -177,8 +181,46 @@ public class PlayerMovement : MonoBehaviour
                 Sheild.SetActive(true);
             }
         }
+        if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3)&&CounterDone)// Basic Counter-Attack part 1/2
+        {
+            suckySucky.SetActive(true);
+            StartCoroutine("CA");
+            
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3)&&CounterDone)// Basic Counter-Attack part 2/2
+        {
+            CounterDone = false;
+            StopCoroutine("CA");
+            StartCoroutine("FireOnMyMark");
+            
+        }
 
+    }
+    IEnumerator CA()
+    {
+        yield return new WaitForSeconds(5);
+        suckySucky.SetActive(false);
+    }
+    IEnumerator FireOnMyMark()
+    {
+        while (suckySucky.GetComponent<SuckySuckyWaitScript>().wait)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        suckySucky.GetComponent<Animator>().enabled = false;
+        if (ItemsInStorage > 0)
+        {
+            sonOfSuckySucky.GetComponent<Animator>().SetInteger("ItemsInStorage", ItemsInStorage);
+            sonOfSuckySucky.GetComponent<Animator>().enabled = true;
+            //sonOfSuckySucky.GetComponent<Animator>().SetTrigger("fireTheStorage);
 
+        }
+        else
+        {
+            CounterDone = true;
+            suckySucky.SetActive(false);
+        }
+        
     }
    
 /* private void OnTriggerEnter2D(Collider2D collision)
@@ -196,17 +238,19 @@ public class PlayerMovement : MonoBehaviour
 private void OnTriggerStay2D(Collider2D collision)
     {
            {
-            Debug.Log("collision");
+            
             if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("BossProjectile")||collision.gameObject.CompareTag("SpecialBossProjectile"))
             {
+                Debug.Log("collision");
                 LossOfLife();
             }
             else if (collision.gameObject.CompareTag("PlayerProjectile"))
             {
-
+                Debug.Log("collision");
             }
-            else if(!collision.gameObject.CompareTag("SafeZone"))
+            else if(!collision.gameObject.CompareTag("SafeZone")&&!collision.gameObject.CompareTag("CAA"))
             {
+                Debug.Log("collision");
                 Debug.Log("Invalid Tag");
             }
         }  
@@ -233,6 +277,10 @@ private void OnTriggerStay2D(Collider2D collision)
         {
             MP++;
         }
+    }
+    public void CAXPGain()
+    {
+        XP += playerbC * atk;
     }
     IEnumerator respawn()
     {
