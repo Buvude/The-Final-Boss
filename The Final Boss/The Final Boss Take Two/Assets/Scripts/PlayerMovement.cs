@@ -284,6 +284,7 @@ private void OnTriggerStay2D(Collider2D collision)
     {
         Boss.GetComponent<BossBehavior>().hit.Play();
         XP += 3*playerbC * atk;
+        totalxp += 3 * playerbC * atk;
     }
     IEnumerator respawn()
     {
