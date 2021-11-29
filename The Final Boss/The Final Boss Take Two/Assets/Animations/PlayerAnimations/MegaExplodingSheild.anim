@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ExplodingSheild
+  m_Name: MegaExplodingSheild
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -27,8 +27,10 @@ AnimationClip:
       value: {fileID: -8453925742106403177, guid: a4e5533bac314914e91f3c719f198e47, type: 3}
     - time: 0.75
       value: {fileID: 3222460324994374017, guid: a4e5533bac314914e91f3c719f198e47, type: 3}
+    - time: 1.0166667
+      value: {fileID: 21300000, guid: 33a7384723f96484da14fe5ac0afb938, type: 3}
     attribute: m_Sprite
-    path: Shield
+    path: 
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -39,7 +41,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 423614430
+      path: 0
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -50,12 +52,13 @@ AnimationClip:
     - {fileID: 1183268048999350121, guid: a4e5533bac314914e91f3c719f198e47, type: 3}
     - {fileID: -8453925742106403177, guid: a4e5533bac314914e91f3c719f198e47, type: 3}
     - {fileID: 3222460324994374017, guid: a4e5533bac314914e91f3c719f198e47, type: 3}
+    - {fileID: 21300000, guid: 33a7384723f96484da14fe5ac0afb938, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.0333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

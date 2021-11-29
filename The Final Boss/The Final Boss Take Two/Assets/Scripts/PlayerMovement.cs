@@ -11,14 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource Fire, Hit;
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky;
+    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter;
     public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
     public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
     public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage=0;
     public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
     private int basicUpgradeExponential, specialUpgradeExponential, coreUpgradeExponential;
-    private bool shootAgain=true, dead=false, canMove=false;
+    private bool shootAgain=true, dead=false, canMove=false, sCSActive=false, sCDActive=false,sCCActive=false;
+    public int sCS, sCD, sCC;//special abilities counters
+    private int sCTS, sCTD, sCTC;//special ability totals
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sCTS = playersS * 5;
+        sCTD = playersD * 5;
+        sCTC = playersC * 5;
         if (Immune && !immuneSpriteActive)
         {
             immuneSpriteActive = true;
@@ -102,7 +107,34 @@ public class PlayerMovement : MonoBehaviour
         Leveloutput[7].text = "lvl: " + playersS.ToString();
         Leveloutput[8].text = "lvl: " + playersD.ToString();
         Leveloutput[9].text = "lvl: " + playersC.ToString();
-        
+        if (sCS >= sCTS && !sCSActive)
+        {
+            sCSActive = true;
+            Leveloutput[20].text = "Special Shot is Active!";
+        }
+        else if (sCS < sCTS)
+        {
+            Leveloutput[20].text = sCS.ToString() + "/" + sCTS.ToString() + " until Special Shot is avaliable";
+        }
+        if (sCD >= sCTD && !sCDActive)
+        {
+            sCDActive = true;
+            Leveloutput[21].text = "Special Sheild is Active!";
+        }
+        else if (sCD < sCTD)
+        {
+            Leveloutput[21].text = sCD.ToString() + "/" + sCTD.ToString() + " until Special Sheild is avaliable";
+        }
+        if (sCC >= sCTC && !sCCActive)
+        {
+            sCCActive = true;
+            Leveloutput[22].text = "Special Sheild is Active!";
+        }
+        else if (sCC < sCTC)
+        {
+            Leveloutput[22].text = sCC.ToString() + "/" + sCTC.ToString() + " until Special Counter is avaliable";
+        }
+
         /*
          * upgrade text end
          */
@@ -275,6 +307,7 @@ private void OnTriggerStay2D(Collider2D collision)
         totalXP += atk * playerbS;
         XPCounter.text = "XP: " + XP.ToString();
         totalXPTXT.text = "Total XP: " + totalXP.ToString();
+        sCS+=playerbS*atk;
         if (MP < mPMax)
         {
             MP++;
@@ -284,7 +317,18 @@ private void OnTriggerStay2D(Collider2D collision)
     {
         Boss.GetComponent<BossBehavior>().hit.Play();
         XP += 3*playerbC * atk;
-        totalxp += 3 * playerbC * atk;
+        totalXP += 3 * playerbC * atk;
+        sCC += playerbC * atk;
+    }
+    public void sheildSpecialGain()
+    {
+        sCD += playerbS*HP;
+    }
+    IEnumerator MegaSheildAction()
+    {
+        megaSheild.SetActive(true);
+        yield return new WaitForSeconds(3 + playerbD);
+        megaSheild.GetComponent<Animator>().SetTrigger("Destroy");
     }
     IEnumerator respawn()
     {

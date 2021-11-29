@@ -6,6 +6,7 @@ public class PlayerCABasic : MonoBehaviour
 {
     public PlayerMovement PM;
     public bool fireing = false, absorbing = false;
+    public AudioSource suckySound, fireingSound, ChargingSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +27,13 @@ public class PlayerCABasic : MonoBehaviour
     {
         fireing = true;
         absorbing = false;
+        ChargingSound.Play();
     }
     public void downAnItem()
     {
         PM.ItemsInStorage--;
         PM.sonOfSuckySucky.GetComponent<Animator>().SetInteger("ItemsInStorage", PM.ItemsInStorage);
+        fireingSound.Play();
     }
     public void despawn()
     {
@@ -56,6 +59,7 @@ public class PlayerCABasic : MonoBehaviour
                         collision.gameObject.GetComponent<VortexAttack>().sucked = true;
                         PM.ItemsInStorage++;
                         Debug.Log("You've absorbed a VA");
+                        suckySound.Play();
                     }
                 }
             }
@@ -69,6 +73,7 @@ public class PlayerCABasic : MonoBehaviour
                         collision.gameObject.GetComponent<SafeZoneAttack>().sucked = true;
                         PM.ItemsInStorage++;
                         Debug.Log("You've absorbed a SZA");
+                        suckySound.Play();
                     }
                 }
 
@@ -83,6 +88,7 @@ public class PlayerCABasic : MonoBehaviour
                         collision.gameObject.GetComponent<LazerAttack>().sucked = true;
                         PM.ItemsInStorage++;
                         Debug.Log("You've absorbed a LA");
+                        suckySound.Play();
                     }
                 }
 
@@ -97,6 +103,7 @@ public class PlayerCABasic : MonoBehaviour
                         collision.gameObject.GetComponent<BigBossAttack>().sucked = true;
                         PM.ItemsInStorage++;
                         Debug.Log("You've absorbed a BBA");
+                        suckySound.Play();
                     }
                 }
 
@@ -112,6 +119,7 @@ public class PlayerCABasic : MonoBehaviour
                         collision.gameObject.GetComponent<BossAttack>().sucked = true;
                         PM.ItemsInStorage++;
                         Debug.Log("You've absorbed a BA 3");
+                        suckySound.Play();
                     }
                 }
 
