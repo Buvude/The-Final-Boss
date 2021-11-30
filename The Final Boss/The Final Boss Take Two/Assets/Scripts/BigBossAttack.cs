@@ -10,14 +10,14 @@ public class BigBossAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(transform.position.y);
     }
 
     // Update is called once per frame
     void Update()
     {
         self.transform.Translate(Vector2.down/speed/2);
-        if (self.transform.position.y <= - 12)
+        if (self.transform.position.y <= - 12/*||self.transform.position.y>= 20*/)
         {
             Destroy(self);
         }

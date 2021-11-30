@@ -5,20 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator megaCounterAnimations;
     public bool CounterDone=true;
     public List<Text> Leveloutput = new List<Text>();
-    public bool Immune=false, immuneSpriteActive=false;
+    public bool Immune=false, immuneSpriteActive=false, counterSpecial = false;
     public AudioSource Fire, Hit;
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter;
+    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter, tempHolder;
     public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
-    public int HP=1, storage=1, mPMax=1, atk=1;//L-Joystick upgrades
+    public int HP=1, storageSpace=1, mPMax=1, atk=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
     public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage=0;
     public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
     private int basicUpgradeExponential, specialUpgradeExponential, coreUpgradeExponential;
-    private bool shootAgain=true, dead=false, canMove=false, sCSActive=false, sCDActive=false,sCCActive=false;
+    private bool shootAgain=true, dead=false, canMove=false, sCSActive=false, sCDActive=false,sCCActive=false, specialOngoing=false;
     public int sCS, sCD, sCC;//special abilities counters
     private int sCTS, sCTD, sCTC;//special ability totals
     // Start is called before the first frame update
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
          */
         Leveloutput[0].text =  HP.ToString();
         Leveloutput[1].text =  MP.ToString()+"/"+mPMax.ToString();
-        Leveloutput[2].text = ItemsInStorage.ToString()+"/" + storage.ToString();
+        Leveloutput[2].text = ItemsInStorage.ToString()+"/" + storageSpace.ToString();
         Leveloutput[3].text = "lvl: " + atk.ToString();
         Leveloutput[4].text = "lvl: " + playerbS.ToString();
         Leveloutput[5].text = "lvl: " + playerbD.ToString();
@@ -107,6 +108,13 @@ public class PlayerMovement : MonoBehaviour
         Leveloutput[7].text = "lvl: " + playersS.ToString();
         Leveloutput[8].text = "lvl: " + playersD.ToString();
         Leveloutput[9].text = "lvl: " + playersC.ToString();
+        /*
+         * xp text updates
+         */
+        XPCounter.text = "XP: " + XP.ToString();
+        totalXPTXT.text = "Total XP: " + totalXP.ToString();
+
+
         if (sCS >= sCTS && !sCSActive)
         {
             sCSActive = true;
@@ -138,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         /*
          * upgrade text end
          */
-        if (Input.GetKeyDown(KeyCode.Tab))
+       /* if (Input.GetKeyDown(KeyCode.Tab))
         {
             if(Boss.GetComponent<BossBehavior>().phaseType==4)
             {
@@ -156,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             Boss.GetComponent<BossBehavior>().debugFire();
-        }
+        }*///Debug Purposes only
         /*
     * upgrades
     * */
@@ -175,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            storage++;
+            storageSpace++;
         }
         if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
         {
@@ -227,7 +235,72 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine("FireOnMyMark");
             
         }
+        /*
+         * Special abilities
+         */
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Keypad0)&&sCSActive&&!specialOngoing)//Mega blast
+        {
+            tempHolder=Instantiate(megaShot, AnimationHolder.transform);
+            sCSActive = false;
+            specialOngoing = false;
+            sCS = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.KeypadPeriod) && sCDActive && !specialOngoing)
+        {
+            specialOngoing = true;
+            StartCoroutine("MegaSheild");
+        }
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.KeypadPlus) && sCCActive && !specialOngoing)
+        {
+            specialOngoing = true;
+            Immune = true;
+            MegaCounter.SetActive(true);
+            megaCounterAnimations.SetTrigger("Mega");
+            StartCoroutine("MegaCounterEvent");
+        }
 
+    }
+    IEnumerator MegaCounterEvent()
+    {
+        counterSpecial = true;
+        while (ItemsInStorage<storageSpace)
+        {
+            yield return new WaitForEndOfFrame();
+           
+        }
+        Debug.Log("made it thorugh the first loop");
+        while (suckySucky.GetComponent<SuckySuckyWaitScript>().wait)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.Log("made it through the second loop");
+        suckySucky.GetComponent<Animator>().enabled = false;
+        sonOfSuckySucky.GetComponent<Animator>().SetInteger("ItemsInStorage", ItemsInStorage);
+        sonOfSuckySucky.GetComponent<Animator>().enabled = true;
+
+    }
+    public void doneWithSpecial()
+    {
+        specialOngoing = false;
+    }
+    IEnumerator MegaSheild()
+    {
+        megaSheild.SetActive(true);
+        Immune = true;
+        int countdown;
+        countdown = playersD * HP * 5;
+        Leveloutput[23].gameObject.SetActive(true);
+        Leveloutput[23].text = countdown + " seconds left on sheild";        
+        for (int i = 0; i < playersD * HP * 5; i++)
+        {
+            Leveloutput[23].text = countdown + " seconds left on sheild";
+            yield return new WaitForSeconds(1);
+            countdown--;
+        }
+        Leveloutput[23].gameObject.SetActive(false);
+        megaSheild.SetActive(false);
+        Immune = false;
+        sCSActive = false;
     }
     IEnumerator CA()
     {
@@ -245,6 +318,7 @@ public class PlayerMovement : MonoBehaviour
         {
             sonOfSuckySucky.GetComponent<Animator>().SetInteger("ItemsInStorage", ItemsInStorage);
             sonOfSuckySucky.GetComponent<Animator>().enabled = true;
+            megaCounterAnimations.SetTrigger("Normal");
             //sonOfSuckySucky.GetComponent<Animator>().SetTrigger("fireTheStorage);
 
         }
@@ -313,12 +387,36 @@ private void OnTriggerStay2D(Collider2D collision)
             MP++;
         }
     }
+    public void MegaBlastXPGain()
+    {
+        MP = mPMax;
+        XP += atk * playerbS * playersS * 5;
+        totalXP += atk * playerbS * playersS * 5;
+        Boss.GetComponent<BossBehavior>().hit.Play();
+        doneWithSpecial();
+        Destroy(tempHolder);
+        sCSActive = false;  
+    }
+
     public void CAXPGain()
     {
+        Debug.Log("Basic counter XP Gain");
         Boss.GetComponent<BossBehavior>().hit.Play();
         XP += 3*playerbC * atk;
         totalXP += 3 * playerbC * atk;
         sCC += playerbC * atk;
+    }
+    public void MegaCounterXPGain()
+    {
+        Debug.Log("Mega counter XP Gain");
+        Boss.GetComponent<BossBehavior>().hit.Play();
+        XP += atk * playerbC * playersC * 5;
+        totalXP += atk * playerbC * playersC * 5;
+        sCC = 0;
+        Immune = false;
+        counterSpecial = false;
+        specialOngoing = false;
+        sCCActive = false;
     }
     public void sheildSpecialGain()
     {

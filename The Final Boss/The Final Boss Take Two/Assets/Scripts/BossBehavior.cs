@@ -133,4 +133,5 @@ public class BossBehavior : MonoBehaviour
         Destroy(temp);
         bAM.toggleSidetoSideIdle();
     }
+    
 }

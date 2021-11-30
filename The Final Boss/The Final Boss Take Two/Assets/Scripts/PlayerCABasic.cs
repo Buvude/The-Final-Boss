@@ -54,7 +54,7 @@ public class PlayerCABasic : MonoBehaviour
             {
                 if (!collision.gameObject.GetComponent<VortexAttack>().sucked)
                 {
-                    if (PM.ItemsInStorage < PM.storage)
+                    if (PM.ItemsInStorage < PM.storageSpace)
                     {
                         collision.gameObject.GetComponent<VortexAttack>().sucked = true;
                         PM.ItemsInStorage++;
@@ -68,7 +68,7 @@ public class PlayerCABasic : MonoBehaviour
 
                 if (!collision.gameObject.GetComponent<SafeZoneAttack>().sucked)
                 {
-                    if (PM.ItemsInStorage < PM.storage)
+                    if (PM.ItemsInStorage < PM.storageSpace)
                     {
                         collision.gameObject.GetComponent<SafeZoneAttack>().sucked = true;
                         PM.ItemsInStorage++;
@@ -83,7 +83,7 @@ public class PlayerCABasic : MonoBehaviour
 
                 if (!collision.gameObject.GetComponent<LazerAttack>().sucked)
                 {
-                    if (PM.ItemsInStorage < PM.storage)
+                    if (PM.ItemsInStorage < PM.storageSpace)
                     {
                         collision.gameObject.GetComponent<LazerAttack>().sucked = true;
                         PM.ItemsInStorage++;
@@ -98,7 +98,7 @@ public class PlayerCABasic : MonoBehaviour
 
                 if (!collision.gameObject.GetComponent<BigBossAttack>().sucked)
                 {
-                    if (PM.ItemsInStorage < PM.storage)
+                    if (PM.ItemsInStorage < PM.storageSpace)
                     {
                         collision.gameObject.GetComponent<BigBossAttack>().sucked = true;
                         PM.ItemsInStorage++;
@@ -114,7 +114,7 @@ public class PlayerCABasic : MonoBehaviour
                 if (!collision.gameObject.GetComponent<BossAttack>().sucked)
                 {
                     Debug.Log("You've absorbed a BA 2");
-                    if (PM.ItemsInStorage < PM.storage)
+                    if (PM.ItemsInStorage < PM.storageSpace)
                     {
                         collision.gameObject.GetComponent<BossAttack>().sucked = true;
                         PM.ItemsInStorage++;
@@ -125,9 +125,16 @@ public class PlayerCABasic : MonoBehaviour
 
             }
         }
-        if (collision.gameObject.CompareTag("Boss") && fireing)
+        else if (collision.gameObject.CompareTag("Boss") && fireing)
         {
-            PM.CAXPGain();
+            if (PM.counterSpecial)
+            {
+                PM.MegaCounterXPGain();
+            }
+            else
+            {
+                PM.CAXPGain();
+            }
         }
     }
 }
