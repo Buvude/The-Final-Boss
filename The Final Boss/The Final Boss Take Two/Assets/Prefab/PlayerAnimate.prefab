@@ -288,6 +288,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: MegaCounter
+      value: 
+      objectReference: {fileID: 2427356468840138378}
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: NextPhaseXPTXT
       value: 
       objectReference: {fileID: 0}
@@ -295,6 +299,14 @@ PrefabInstance:
       propertyPath: AnimationHolder
       value: 
       objectReference: {fileID: 8277647877455781038}
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: megaCounterAnimations
+      value: 
+      objectReference: {fileID: 2427356468840138421}
+    - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+      propertyPath: Leveloutput.Array.size
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3237055282084963996, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
       propertyPath: Leveloutput.Array.data[0]
       value: 
@@ -470,5 +482,15 @@ GameObject:
 --- !u!1 &1586112671878275247 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4011777953506538235, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+  m_PrefabInstance: {fileID: 2427356470133445204}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2427356468840138378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442469086, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
+  m_PrefabInstance: {fileID: 2427356470133445204}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2427356468840138421 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1442469089, guid: 58d30b92533bf4349b97190ace6bc791, type: 3}
   m_PrefabInstance: {fileID: 2427356470133445204}
   m_PrefabAsset: {fileID: 0}

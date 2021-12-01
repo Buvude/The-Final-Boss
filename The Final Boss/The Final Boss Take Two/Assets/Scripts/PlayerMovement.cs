@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float horz, vert;
     public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter, tempHolder;
     public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
-    public int HP=1, storageSpace=1, mPMax=1, atk=1;//L-Joystick upgrades
+    public int HP=1, storageSpace=1, mPMax=1, atk=1,HPLevel=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
     public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage=0;
     public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
          */
         Leveloutput[0].text =  HP.ToString();
         Leveloutput[1].text =  MP.ToString()+"/"+mPMax.ToString();
-        Leveloutput[2].text = ItemsInStorage.ToString()+"/" + storageSpace.ToString();
+        Leveloutput[24].text = ItemsInStorage.ToString()+"/" + storageSpace.ToString();
         Leveloutput[3].text = "lvl: " + atk.ToString();
         Leveloutput[4].text = "lvl: " + playerbS.ToString();
         Leveloutput[5].text = "lvl: " + playerbD.ToString();
@@ -108,6 +108,17 @@ public class PlayerMovement : MonoBehaviour
         Leveloutput[7].text = "lvl: " + playersS.ToString();
         Leveloutput[8].text = "lvl: " + playersD.ToString();
         Leveloutput[9].text = "lvl: " + playersC.ToString();
+        Leveloutput[10].text = Mathf.Pow(specialUpgradeCost, playersS).ToString()+"XP";
+        Leveloutput[11].text = Mathf.Pow(specialUpgradeCost, playersD).ToString() + "XP";
+        Leveloutput[12].text = Mathf.Pow(specialUpgradeCost, playersC).ToString() + "XP";
+        Leveloutput[13].text = Mathf.Pow(basicUpgradeCost, playerbS).ToString() + "XP";
+        Leveloutput[14].text = Mathf.Pow(basicUpgradeCost, playerbD).ToString() + "XP";
+        Leveloutput[15].text = Mathf.Pow(basicUpgradeCost, playerbC).ToString() + "XP";
+        Leveloutput[16].text = Mathf.Pow(coreUpgradeCost, atk).ToString() + "XP";
+        Leveloutput[17].text = Mathf.Pow(coreUpgradeCost, HPLevel).ToString() + "XP";
+        Leveloutput[18].text = Mathf.Pow(coreUpgradeCost, mPMax).ToString() + "XP";
+        Leveloutput[19].text = Mathf.Pow(coreUpgradeCost, storageSpace).ToString() + "XP";
+        //10-19
         /*
          * xp text updates
          */
@@ -169,44 +180,56 @@ public class PlayerMovement : MonoBehaviour
     * upgrades
     * */
        
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow)&&Mathf.Pow(coreUpgradeCost,HPLevel)<=XP)
         {
+            XP -= int.Parse(Mathf.Pow(coreUpgradeCost, HPLevel).ToString());
             HP++;
+            HPLevel++;
+            
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && Mathf.Pow(coreUpgradeCost, atk) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(coreUpgradeCost, atk).ToString());
             atk++;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && Mathf.Pow(coreUpgradeCost, mPMax) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(coreUpgradeCost, mPMax).ToString());
             mPMax++;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && Mathf.Pow(coreUpgradeCost, storageSpace) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(coreUpgradeCost, storageSpace).ToString());
             storageSpace++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
+        if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7) && Mathf.Pow(basicUpgradeCost, playerbS) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(basicUpgradeCost, playerbS).ToString());
             playerbS++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8))
+        if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8) && Mathf.Pow(basicUpgradeCost, playerbD) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(basicUpgradeCost, playerbD).ToString());
             playerbD++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
+        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9) && Mathf.Pow(basicUpgradeCost, playerbC) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(basicUpgradeCost, playerbC).ToString());
             playerbC++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4) && Mathf.Pow(basicUpgradeCost, playersS) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(specialUpgradeCost, playersS).ToString());
             playersS++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5) && Mathf.Pow(basicUpgradeCost, playersD) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(specialUpgradeCost, playersD).ToString());
             playersD++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6))
+        if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6) && Mathf.Pow(basicUpgradeCost, playersC) <= XP)
         {
+            XP -= int.Parse(Mathf.Pow(specialUpgradeCost, playersC).ToString());
             playersC++;
         }
         /*
@@ -225,6 +248,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //CounterDone = false;
             suckySucky.SetActive(true);
+            megaCounterAnimations.SetTrigger("Normal");
             StartCoroutine("CA");
             
         }
