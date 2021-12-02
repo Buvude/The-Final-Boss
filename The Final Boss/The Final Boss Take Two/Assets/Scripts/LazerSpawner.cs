@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class LazerSpawner : MonoBehaviour
 {
+    public bool paused;
     public Transform target;
     public PathType pathtype = PathType.CatmullRom;
     public bool spawn = false, despawn = false;
@@ -22,7 +23,7 @@ public class LazerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        paused = bB.paused;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -64,6 +65,10 @@ public class LazerSpawner : MonoBehaviour
     {
         Debug.Log("This shit is for our lazer fans!");
         yield return new WaitForSeconds(5);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         Debug.Log("The wait has ended");
         resetBool();
         lA.startCRShoot();
@@ -71,6 +76,10 @@ public class LazerSpawner : MonoBehaviour
     IEnumerator PostLazerCooldown()
     {
         yield return new WaitForSeconds(5);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         resetBool();
         bB.postLazer();
 

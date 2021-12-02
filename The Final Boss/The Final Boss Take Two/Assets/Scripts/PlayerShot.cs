@@ -16,7 +16,10 @@ public class PlayerShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        self.transform.Translate(Vector2.up / speed);
+        if (speed != 0)
+        { 
+            self.transform.Translate(Vector2.up / speed); 
+        }
         if (self.transform.position.y >= 20)
         {
             Destroy(self);

@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool paused = false;
+    public List<GameObject> pauseListPlayer = new List<GameObject>();
     public Animator megaCounterAnimations;
     public bool CounterDone=true;
     public List<Text> Leveloutput = new List<Text>();
     public bool Immune=false, immuneSpriteActive=false, counterSpecial = false;
-    public AudioSource Fire, Hit;
+    public AudioSource Fire, Hit,Music;
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter, tempHolder;
+    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter, tempHolder, bossAnimationHolder;
     public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
     public int HP=1, storageSpace=1, mPMax=1, atk=1,HPLevel=1;//L-Joystick upgrades
     public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool shootAgain=true, dead=false, canMove=false, sCSActive=false, sCDActive=false,sCCActive=false, specialOngoing=false;
     public int sCS, sCD, sCC;//special abilities counters
     private int sCTS, sCTD, sCTC;//special ability totals
+    private float speedHolderB,speedHolderP;//to hold speed of projectiles when paused
     // Start is called before the first frame update
     void Start()
     {
@@ -283,7 +286,27 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine("MegaCounterEvent");
         }
 
+        /*
+         * Pause buttons
+         */
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!paused)
+            {
+                paused = true;
+                TutorialPause();
+                Music.Pause();
+            }
+            else if (paused)
+            {
+                paused = false;
+                TutorialUnpause();
+                Music.UnPause();
+            }
+        }
+
     }
+
     IEnumerator MegaCounterEvent()
     {
         counterSpecial = true;
@@ -300,9 +323,76 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("made it through the second loop");
         suckySucky.GetComponent<Animator>().enabled = false;
         sonOfSuckySucky.GetComponent<Animator>().SetInteger("ItemsInStorage", ItemsInStorage);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         sonOfSuckySucky.GetComponent<Animator>().enabled = true;
 
     }
+    public void TutorialPause()//REMEMBER TO PAUSE ALL CORUTINES
+    {
+        
+        Boss.GetComponent<Animator>().enabled = false;
+        bossAnimationHolder.GetComponent<Animator>().enabled = false;
+
+        switch (Boss.GetComponent<BossBehavior>().phaseType)//stops movement from boss projectiles, but stores the value for unpause
+        {
+            case 0:
+                if (bossAnimationHolder.GetComponentInChildren<BossAttack>() != null)
+                {
+                    speedHolderB = bossAnimationHolder.GetComponentInChildren<BossAttack>().speed;
+                    bossAnimationHolder.GetComponentInChildren<BossAttack>().speed = 0;
+                }
+                break;
+        }
+        foreach(GameObject go in pauseListPlayer)
+        {
+            if (go.activeInHierarchy)
+            {
+                if (go.GetComponent<Animator>() != null)
+                {
+                    go.GetComponent<Animator>().enabled = false;
+                }
+            }
+        }
+        if (AnimationHolder.GetComponentInChildren<PlayerShot>() != null)
+        {
+            speedHolderP = AnimationHolder.GetComponentInChildren<PlayerShot>().speed;
+            AnimationHolder.GetComponentInChildren<PlayerShot>().speed=0;
+        }
+    }
+    public void TutorialUnpause()//REMEMBER TO UNPAUSE ALL CORUTINES
+    {
+
+        Boss.GetComponent<Animator>().enabled = true;
+        bossAnimationHolder.GetComponent<Animator>().enabled = true;
+
+        switch (Boss.GetComponent<BossBehavior>().phaseType)//stops movement from boss projectiles, but stores the value for unpause
+        {
+            case 0:
+                if (bossAnimationHolder.GetComponentInChildren<BossAttack>() != null)
+                {
+                    bossAnimationHolder.GetComponentInChildren<BossAttack>().speed = speedHolderB;
+                }
+                break;
+        }
+        foreach (GameObject go in pauseListPlayer)
+        {
+            if (go.activeInHierarchy)
+            {
+                if (go.GetComponent<Animator>() != null)
+                {
+                    go.GetComponent<Animator>().enabled = true;
+                }
+            }
+        }
+        if (AnimationHolder.GetComponentInChildren<PlayerShot>() != null)
+        {
+            AnimationHolder.GetComponentInChildren<PlayerShot>().speed = speedHolderP;
+        }
+    }
+
     public void doneWithSpecial()
     {
         specialOngoing = false;
@@ -329,6 +419,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CA()
     {
         yield return new WaitForSeconds(5);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         suckySucky.SetActive(false);
     }
     IEnumerator FireOnMyMark()
@@ -338,6 +432,10 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         suckySucky.GetComponent<Animator>().enabled = false;
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         if (ItemsInStorage > 0)
         {
             sonOfSuckySucky.GetComponent<Animator>().SetInteger("ItemsInStorage", ItemsInStorage);
@@ -450,6 +548,10 @@ private void OnTriggerStay2D(Collider2D collision)
     {
         megaSheild.SetActive(true);
         yield return new WaitForSeconds(3 + playerbD);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         megaSheild.GetComponent<Animator>().SetTrigger("Destroy");
     }
     IEnumerator respawn()
@@ -459,6 +561,10 @@ private void OnTriggerStay2D(Collider2D collision)
         if (HP >= 1)
         {
             yield return new WaitForSeconds(3);
+            while (paused)
+            {
+                yield return new WaitForEndOfFrame();
+            }
             dead = false;
             self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             self.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -467,12 +573,20 @@ private void OnTriggerStay2D(Collider2D collision)
         {
             //GameOver();
             yield return new WaitForSeconds(.1f);
+            while (paused)
+            {
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
     IEnumerator cooldown()
     {
         shootAgain = false;
         yield return new WaitForSeconds(cooldownTime);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         shootAgain = true;
     }
     public void NextPhase()

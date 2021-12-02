@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LazerAttack : MonoBehaviour
 {
-    public bool sucked;
+    public bool sucked, paused;
     public List<GameObject> Lazers;
     public GameObject spawner, self;
     public LazerSpawner lS;
@@ -18,7 +18,7 @@ public class LazerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        paused = bB.paused;
     }
     public void spawn()
     {
@@ -45,6 +45,10 @@ public class LazerAttack : MonoBehaviour
             List<GameObject> cloneGO = new List<GameObject>(Lazers);
             //Debug.Log(cloneGO.Length.ToString());
             yield return new WaitForSeconds(1);
+            while (paused)
+            {
+                yield return new WaitForEndOfFrame();
+            }
             //Debug.Log("start first for loop");
             int tempRandHold;
             tempRandHold=Random.Range(0, 5);
@@ -58,7 +62,11 @@ public class LazerAttack : MonoBehaviour
                 self.GetComponent<AudioSource>().Play();
             }
             yield return new WaitForSeconds(5);
-            
+            while (paused)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
             /*if (tempRandHold != 4)
             {
                 for (int ii = tempRandHold - 1; ii < cloneGO.Length; ii++)

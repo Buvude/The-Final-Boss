@@ -5537,6 +5537,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115775512}
   m_CullTransparentMesh: 1
+--- !u!1 &2129578752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4870821223349126399, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+  m_PrefabInstance: {fileID: 143389924506931471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &143389924506931471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5678,6 +5683,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 395949222}
     - target: {fileID: 955862055216559304, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
+      propertyPath: Music
+      value: 
+      objectReference: {fileID: 519420030}
+    - target: {fileID: 955862055216559304, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: XPCounter
       value: 
       objectReference: {fileID: 871497139}
@@ -5689,6 +5698,10 @@ PrefabInstance:
       propertyPath: NextPhaseXPTXT
       value: 
       objectReference: {fileID: 649548064}
+    - target: {fileID: 955862055216559304, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
+      propertyPath: bossAnimationHolder
+      value: 
+      objectReference: {fileID: 2129578752}
     - target: {fileID: 955862055216559304, guid: dda94347f7bca7042b0687bc51c86dd9, type: 3}
       propertyPath: Leveloutput.Array.data[0]
       value: 

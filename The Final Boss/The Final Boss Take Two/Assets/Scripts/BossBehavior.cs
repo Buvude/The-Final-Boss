@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
 {
+    public bool paused = false;
     public AudioSource synth, BigShot, BasicShot, Lazer, hit;
     public int phaseNumber, phaseType, totalPhase;//Phase type: 0=basic, 1= big, 2=Lazer, 3=vortex, 4=safe Zone
     //phaseNumber is the number of shots per attack fired, totalPhase is just to keep track of score at the end and maybe other stuff later
@@ -29,6 +30,7 @@ public class BossBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        paused=player.GetComponentInChildren<PlayerMovement>().paused;
         totalPhaseTXT.text = "Total phases survived: " + totalPhase.ToString();
         switch (phaseType)
         {
@@ -57,6 +59,10 @@ public class BossBehavior : MonoBehaviour
     IEnumerator Monolouge()
     {
         yield return new WaitForSeconds(5);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         monolaougeTXT.gameObject.SetActive(false);
         bAA.SetTrigger("Side to side");
         player.GetComponentInChildren<PlayerMovement>().canMoveSet();
@@ -83,6 +89,10 @@ public class BossBehavior : MonoBehaviour
                 Instantiate(weaponType[phaseType], animationHolder.transform);
                 BasicShot.Play();
                 yield return new WaitForSeconds(1);
+                while (paused)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
             }
             animationHolder.transform.Translate(-additallup, 0f, 0f);
             bAM.toggleSidetoSideIdle();
@@ -97,6 +107,10 @@ public class BossBehavior : MonoBehaviour
                 Instantiate(weaponType[1], animationHolder.transform);
                 BigShot.Play();
                 yield return new WaitForSeconds(2);
+                while (paused)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
             }
             animationHolder.transform.Translate(-additallup, 0f, 0f);
             bAM.toggleSidetoSideIdle();

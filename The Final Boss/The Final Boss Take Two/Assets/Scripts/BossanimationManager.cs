@@ -5,6 +5,7 @@ using UnityEngine.Animations;
 
 public class BossanimationManager : MonoBehaviour
 {
+    public bool paused=false;
     public float trackingSpeed;
     public GameObject Player, self;
     //private Vector2 target1;
@@ -20,6 +21,7 @@ public class BossanimationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        paused = self.GetComponentInChildren<BossBehavior >().paused;
         //target1.x = Player.gameObject.transform.position.x;
        /* if (moveTowardsPlayer)
         {
@@ -29,7 +31,7 @@ public class BossanimationManager : MonoBehaviour
     }
     public void StartFireRoutine()
     {
-        bAA.GetComponent<Animator>().enabled = false;
+        bAA.GetComponentInChildren<Animator>().enabled = false;
         StartCoroutine("movetowardsPlayer");
         //moveTowardsPlayer = true;
         
@@ -42,6 +44,10 @@ public class BossanimationManager : MonoBehaviour
     IEnumerator movetowardsPlayer()
     {
         yield return new WaitForSeconds(3);
+        while (paused)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         bB.debugFire();
 
     }
