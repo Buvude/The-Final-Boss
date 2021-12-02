@@ -205,32 +205,32 @@ public class PlayerMovement : MonoBehaviour
             XP -= int.Parse(Mathf.Pow(coreUpgradeCost, storageSpace).ToString());
             storageSpace++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7) && Mathf.Pow(basicUpgradeCost, playerbS) <= XP)
+        if ((Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7)) && Mathf.Pow(basicUpgradeCost, playerbS) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(basicUpgradeCost, playerbS).ToString());
             playerbS++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8) && Mathf.Pow(basicUpgradeCost, playerbD) <= XP)
+        if ((Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8)) && Mathf.Pow(basicUpgradeCost, playerbD) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(basicUpgradeCost, playerbD).ToString());
             playerbD++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9) && Mathf.Pow(basicUpgradeCost, playerbC) <= XP)
+        if ((Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9)) && Mathf.Pow(basicUpgradeCost, playerbC) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(basicUpgradeCost, playerbC).ToString());
             playerbC++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4) && Mathf.Pow(basicUpgradeCost, playersS) <= XP)
+        if ((Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)) && Mathf.Pow(basicUpgradeCost, playersS) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(specialUpgradeCost, playersS).ToString());
             playersS++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5) && Mathf.Pow(basicUpgradeCost, playersD) <= XP)
+        if ((Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5)) && Mathf.Pow(basicUpgradeCost, playersD) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(specialUpgradeCost, playersD).ToString());
             playersD++;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6) && Mathf.Pow(basicUpgradeCost, playersC) <= XP)
+        if ((Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6)) && Mathf.Pow(basicUpgradeCost, playersC) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(specialUpgradeCost, playersC).ToString());
             playersC++;
@@ -265,19 +265,19 @@ public class PlayerMovement : MonoBehaviour
         /*
          * Special abilities
          */
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Keypad0) && sCSActive && !specialOngoing)//Mega blast
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Keypad0)) && sCSActive && !specialOngoing)//Mega blast
         {
             tempHolder = Instantiate(megaShot, AnimationHolder.transform);
             sCSActive = false;
             specialOngoing = false;
             sCS = 0;
         }
-        if (Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.KeypadPeriod) && sCDActive && !specialOngoing)
+        if ((Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.KeypadPeriod)) && sCDActive && !specialOngoing)
         {
             specialOngoing = true;
             StartCoroutine("MegaSheild");
         }
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.KeypadPlus) && sCCActive && !specialOngoing)
+        if ((Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.KeypadPlus)) && sCCActive && !specialOngoing)
         {
             specialOngoing = true;
             Immune = true;
@@ -669,12 +669,23 @@ private void OnTriggerStay2D(Collider2D collision)
         }
         else
         {
-            //GameOver();
-            yield return new WaitForSeconds(.1f);
-            while (paused)
-            {
-                yield return new WaitForEndOfFrame();
-            }
+            StartCoroutine("GameOver");
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    IEnumerator GameOver()
+    {
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Game Over\n Score: " + totalXP.ToString();
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 0;
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.gameObject.SetActive(true);
+        foreach (GameObject go in Boss.GetComponent<BossBehavior>().gUI)
+        {
+            go.SetActive(false);
+        }
+        foreach (Text go in Leveloutput)
+        {
+            go.gameObject.SetActive(false);
         }
     }
     IEnumerator cooldown()
