@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SafeZoneAttack : MonoBehaviour
 {
-    public bool sucked;
+    public bool sucked,paused;
     private int storage;
     public List<Transform> SafeZoneSpawn = new List<Transform>();
     public GameObject Self,SafeZone;

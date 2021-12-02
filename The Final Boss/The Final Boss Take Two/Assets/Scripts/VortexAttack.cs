@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VortexAttack : MonoBehaviour
 {
-    public bool sucked;
+    public bool sucked,paused=false,psup=false;
     public GameObject self;
     private GameObject Boss;
     public Animator VA, VL1, VL2, VL3, VL4;
@@ -17,7 +17,27 @@ public class VortexAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        paused = Boss.GetComponent<BossanimationManager>().paused;
+        if (!paused&&!psup) 
+        {
+            Debug.Log("Pause VA");
+            psup = true;
+            VA.enabled = true;
+            VL1.enabled = true;
+            VL2.enabled = true;
+            VL3.enabled = true;
+            VL4.enabled = true;
+        }
+        if (paused && psup)
+        {
+            Debug.Log("Unpause VA");
+            psup = false;
+            VA.enabled = false;
+            VL1.enabled = false;
+            VL2.enabled = false;
+            VL3.enabled = false;
+            VL4.enabled = false;
+        }
     }
     public void loop()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SZAttackCounter : MonoBehaviour
 {
+    public bool paused;
     public GameObject boss;
     public int number;
     public Animator selfAnimator;
@@ -19,7 +20,8 @@ public class SZAttackCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        paused = boss.GetComponent<BossBehavior>().paused;
+        sZA.paused = paused;
     }
     public void incriment()
     {

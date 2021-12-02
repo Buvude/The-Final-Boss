@@ -16,10 +16,14 @@ public class BigBossAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        self.transform.Translate(Vector2.down/speed/2);
-        if (self.transform.position.y <= - 12/*||self.transform.position.y>= 20*/)
+        if (speed != 0)
         {
-            Destroy(self);
+
+            self.transform.Translate(Vector2.down / speed / 2);
+            if (self.transform.position.y <= -12/*||self.transform.position.y>= 20*/)
+            {
+                Destroy(self);
+            }
         }
     }
 }

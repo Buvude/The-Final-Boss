@@ -8,23 +8,23 @@ public class PlayerMovement : MonoBehaviour
     public bool paused = false;
     public List<GameObject> pauseListPlayer = new List<GameObject>();
     public Animator megaCounterAnimations;
-    public bool CounterDone=true;
+    public bool CounterDone = true;
     public List<Text> Leveloutput = new List<Text>();
-    public bool Immune=false, immuneSpriteActive=false, counterSpecial = false;
-    public AudioSource Fire, Hit,Music;
+    public bool Immune = false, immuneSpriteActive = false, counterSpecial = false;
+    public AudioSource Fire, Hit, Music;
     public float speedMod = 1;
     private float horz, vert;
-    public GameObject self, AnimationHolder, Boss, playerShot,Sheild,invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter, tempHolder, bossAnimationHolder;
-    public Text XPCounter,NextPhaseXPTXT,totalXPTXT;
-    public int HP=1, storageSpace=1, mPMax=1, atk=1,HPLevel=1;//L-Joystick upgrades
-    public int playerbS=1, playersS=1, playerbD=1, playersD=1, playerbC=1, playersC=1;//six buttons upgrades
-    public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage=0;
+    public GameObject self, AnimationHolder, Boss, playerShot, Sheild, invincableSprite, suckySucky, sonOfSuckySucky, megaSheild, megaShot, MegaCounter, tempHolder, bossAnimationHolder;
+    public Text XPCounter, NextPhaseXPTXT, totalXPTXT;
+    public int HP = 1, storageSpace = 1, mPMax = 1, atk = 1, HPLevel = 1;//L-Joystick upgrades
+    public int playerbS = 1, playersS = 1, playerbD = 1, playersD = 1, playerbC = 1, playersC = 1;//six buttons upgrades
+    public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage = 0;
     public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
     private int basicUpgradeExponential, specialUpgradeExponential, coreUpgradeExponential;
-    private bool shootAgain=true, dead=false, canMove=false, sCSActive=false, sCDActive=false,sCCActive=false, specialOngoing=false;
+    private bool shootAgain = true, dead = false, canMove = false, sCSActive = false, sCDActive = false, sCCActive = false, specialOngoing = false;
     public int sCS, sCD, sCC;//special abilities counters
     private int sCTS, sCTD, sCTC;//special ability totals
-    private float speedHolderB,speedHolderP;//to hold speed of projectiles when paused
+    private float speedHolderB, speedHolderP;//to hold speed of projectiles when paused
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         specialUpgradeExponential = specialUpgradeCost;
         coreUpgradeExponential = coreUpgradeCost;
         XP = 0;
-        nextPhaseXP = 20;
+        nextPhaseXP = 40;
         NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
     }
 
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (canMove && !dead)
         {
             AnimationHolder.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
-            if (Input.GetKeyDown(KeyCode.Z)||Input.GetKeyDown(KeyCode.Alpha1)|| Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
             {
                 if (shootAgain)//impliments a cooldown
                 {
@@ -101,9 +101,9 @@ public class PlayerMovement : MonoBehaviour
          * Player Control end
          * Upgrade text begin
          */
-        Leveloutput[0].text =  HP.ToString();
-        Leveloutput[1].text =  MP.ToString()+"/"+mPMax.ToString();
-        Leveloutput[24].text = ItemsInStorage.ToString()+"/" + storageSpace.ToString();
+        Leveloutput[0].text = HP.ToString();
+        Leveloutput[1].text = MP.ToString() + "/" + mPMax.ToString();
+        Leveloutput[24].text = ItemsInStorage.ToString() + "/" + storageSpace.ToString();
         Leveloutput[3].text = "lvl: " + atk.ToString();
         Leveloutput[4].text = "lvl: " + playerbS.ToString();
         Leveloutput[5].text = "lvl: " + playerbD.ToString();
@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         Leveloutput[7].text = "lvl: " + playersS.ToString();
         Leveloutput[8].text = "lvl: " + playersD.ToString();
         Leveloutput[9].text = "lvl: " + playersC.ToString();
-        Leveloutput[10].text = Mathf.Pow(specialUpgradeCost, playersS).ToString()+"XP";
+        Leveloutput[10].text = Mathf.Pow(specialUpgradeCost, playersS).ToString() + "XP";
         Leveloutput[11].text = Mathf.Pow(specialUpgradeCost, playersD).ToString() + "XP";
         Leveloutput[12].text = Mathf.Pow(specialUpgradeCost, playersC).ToString() + "XP";
         Leveloutput[13].text = Mathf.Pow(basicUpgradeCost, playerbS).ToString() + "XP";
@@ -160,9 +160,9 @@ public class PlayerMovement : MonoBehaviour
         /*
          * upgrade text end
          */
-       /* if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(Boss.GetComponent<BossBehavior>().phaseType==4)
+            if (Boss.GetComponent<BossBehavior>().phaseType == 4)
             {
                 Boss.GetComponent<BossBehavior>().phaseType = 0;
             }
@@ -178,17 +178,17 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             Boss.GetComponent<BossBehavior>().debugFire();
-        }*///Debug Purposes only
+        }//Debug Purposes only*/
         /*
     * upgrades
     * */
-       
-        if (Input.GetKeyDown(KeyCode.UpArrow)&&Mathf.Pow(coreUpgradeCost,HPLevel)<=XP)
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Mathf.Pow(coreUpgradeCost, HPLevel) <= XP)
         {
             XP -= int.Parse(Mathf.Pow(coreUpgradeCost, HPLevel).ToString());
             HP++;
             HPLevel++;
-            
+
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && Mathf.Pow(coreUpgradeCost, atk) <= XP)
         {
@@ -247,27 +247,27 @@ public class PlayerMovement : MonoBehaviour
                 Sheild.SetActive(true);
             }
         }
-        if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3)&&CounterDone)// Basic Counter-Attack part 1/2
+        if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 1/2
         {
             //CounterDone = false;
             suckySucky.SetActive(true);
             megaCounterAnimations.SetTrigger("Normal");
             StartCoroutine("CA");
-            
+
         }
-        if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3)&&CounterDone)// Basic Counter-Attack part 2/2
+        if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 2/2
         {
             CounterDone = false;
             StopCoroutine("CA");
             StartCoroutine("FireOnMyMark");
-            
+
         }
         /*
          * Special abilities
          */
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Keypad0)&&sCSActive&&!specialOngoing)//Mega blast
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Keypad0) && sCSActive && !specialOngoing)//Mega blast
         {
-            tempHolder=Instantiate(megaShot, AnimationHolder.transform);
+            tempHolder = Instantiate(megaShot, AnimationHolder.transform);
             sCSActive = false;
             specialOngoing = false;
             sCS = 0;
@@ -310,10 +310,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator MegaCounterEvent()
     {
         counterSpecial = true;
-        while (ItemsInStorage<storageSpace)
+        while (ItemsInStorage < storageSpace)
         {
             yield return new WaitForEndOfFrame();
-           
+
         }
         Debug.Log("made it thorugh the first loop");
         while (suckySucky.GetComponent<SuckySuckyWaitScript>().wait)
@@ -330,9 +330,18 @@ public class PlayerMovement : MonoBehaviour
         sonOfSuckySucky.GetComponent<Animator>().enabled = true;
 
     }
-    public void TutorialPause()//REMEMBER TO PAUSE ALL CORUTINES
+    public void TutorialPause()//REMEMBER TO PAUSE ALL CORUTINES might be uneeded
     {
-        
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Paused";
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.gameObject.SetActive(true);
+        foreach (GameObject go in Boss.GetComponent<BossBehavior>().gUI)
+        {
+            go.SetActive(false);
+        }
+        foreach(Text txt in Leveloutput)
+        {
+            txt.gameObject.SetActive(false);
+        }
         Boss.GetComponent<Animator>().enabled = false;
         bossAnimationHolder.GetComponent<Animator>().enabled = false;
 
@@ -345,8 +354,37 @@ public class PlayerMovement : MonoBehaviour
                     bossAnimationHolder.GetComponentInChildren<BossAttack>().speed = 0;
                 }
                 break;
+            case 1:
+                if (bossAnimationHolder.GetComponentInChildren<BigBossAttack>() != null)
+                {
+                    speedHolderB = bossAnimationHolder.GetComponentInChildren<BigBossAttack>().speed;
+                    bossAnimationHolder.GetComponentInChildren<BigBossAttack>().speed = 0;
+                }
+                break;
+            case 2:
+
+                //Lasers take care of themselves... mostly, it isn't perfect, but it'll work for my needs
+                break;
+            case 3:
+                if (GameObject.Find("VortexAttack(Clone)") != null)
+                {
+                    //once again, takes care of itself
+                    /*GameObject lasers = GameObject.Find("VortexAttack(Clone)").GetComponentInChildren<GameObject>();
+                    GameObject.Find("VortexAttack(Clone)").GetComponent<Animator>().enabled = false;
+                    foreach(Animator anime in GameObject.Find("VortexAttack(Clone)").GetComponentInChildren<GameObject>().GetComponentsInChildren<Animator>())
+                    {
+                        anime.enabled = false;//why did I name this variable anime? I have no clue... I just did...
+                    }*/
+                }
+                break;
+            case 4:
+                if (GameObject.Find("SafeZoneAttack(Clone)") != null)
+                {
+                    GameObject.Find("SafeZoneAttack(Clone)").GetComponentInChildren<Animator>().enabled = false;
+                }
+                break;
         }
-        foreach(GameObject go in pauseListPlayer)
+        foreach (GameObject go in pauseListPlayer)
         {
             if (go.activeInHierarchy)
             {
@@ -359,14 +397,21 @@ public class PlayerMovement : MonoBehaviour
         if (AnimationHolder.GetComponentInChildren<PlayerShot>() != null)
         {
             speedHolderP = AnimationHolder.GetComponentInChildren<PlayerShot>().speed;
-            AnimationHolder.GetComponentInChildren<PlayerShot>().speed=0;
+            AnimationHolder.GetComponentInChildren<PlayerShot>().speed = 0;
         }
     }
-    public void TutorialUnpause()//REMEMBER TO UNPAUSE ALL CORUTINES
+    public void TutorialUnpause()//REMEMBER TO UNPAUSE ALL CORUTINES might be unneeded
     {
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "";
+        foreach (GameObject go in Boss.GetComponent<BossBehavior>().gUI)
+        {
+            go.SetActive(true);
+        }
+        foreach (Text txt in Leveloutput)
+        {
+            txt.gameObject.SetActive(true);
+        }
 
-        Boss.GetComponent<Animator>().enabled = true;
-        bossAnimationHolder.GetComponent<Animator>().enabled = true;
 
         switch (Boss.GetComponent<BossBehavior>().phaseType)//stops movement from boss projectiles, but stores the value for unpause
         {
@@ -374,6 +419,59 @@ public class PlayerMovement : MonoBehaviour
                 if (bossAnimationHolder.GetComponentInChildren<BossAttack>() != null)
                 {
                     bossAnimationHolder.GetComponentInChildren<BossAttack>().speed = speedHolderB;
+                    Boss.GetComponent<Animator>().enabled = true;
+                }
+                else
+                {
+                    Boss.GetComponent<Animator>().enabled = true;
+                    bossAnimationHolder.GetComponent<Animator>().enabled = true;
+                }
+                break;
+            case 1:
+                if (bossAnimationHolder.GetComponentInChildren<BigBossAttack>() != null)
+                {
+
+                    bossAnimationHolder.GetComponentInChildren<BigBossAttack>().speed = speedHolderB;
+                    Boss.GetComponent<Animator>().enabled = true;
+                }
+                else
+                {
+                    Boss.GetComponent<Animator>().enabled = true;
+                    bossAnimationHolder.GetComponent<Animator>().enabled = true;
+                }
+                break;
+            case 2:
+
+                //Lasers take care of themselves... mostly, it isn't perfect, but it'll work for my needs
+                break;
+            case 3:
+                if (GameObject.Find("VortexAttack(Clone)") != null)
+                {
+                    //once again, takes care of itself
+                    /*GameObject lasers = GameObject.Find("VortexAttack(Clone)").GetComponentInChildren<GameObject>();
+                    GameObject.Find("VortexAttack(Clone)").GetComponent<Animator>().enabled = false;
+                    foreach(Animator anime in GameObject.Find("VortexAttack(Clone)").GetComponentInChildren<GameObject>().GetComponentsInChildren<Animator>())
+                    {
+                        anime.enabled = false;//why did I name this variable anime? I have no clue... I just did...
+                    }*/
+                    Boss.GetComponent<Animator>().enabled = true;
+                }
+                else
+                {
+                    Boss.GetComponent<Animator>().enabled = true;
+                    bossAnimationHolder.GetComponent<Animator>().enabled = true;
+                }
+                break;
+            case 4:
+                if (GameObject.Find("SafeZoneAttack(Clone)") != null)
+                {
+                    GameObject.Find("SafeZoneAttack(Clone)").GetComponentInChildren<Animator>().enabled = true;
+                    Boss.GetComponent<Animator>().enabled = true;
+                }
+                else
+                {
+                    Boss.GetComponent<Animator>().enabled = true;
+                    bossAnimationHolder.GetComponent<Animator>().enabled = true;
                 }
                 break;
         }
@@ -596,14 +694,14 @@ private void OnTriggerStay2D(Collider2D collision)
             Boss.GetComponent<BossBehavior>().phaseType = 0;
             Boss.GetComponent<BossBehavior>().phaseNumber++;
             Boss.GetComponent<BossBehavior>().totalPhase++;
-            nextPhaseXP += 20 * Boss.GetComponent<BossBehavior>().phaseNumber;
+            nextPhaseXP += 40 * Boss.GetComponent<BossBehavior>().phaseNumber;
             NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
         }
         else
         {
             Boss.GetComponent<BossBehavior>().phaseType += 1;
             Boss.GetComponent<BossBehavior>().totalPhase++;
-            nextPhaseXP += 20 * Boss.GetComponent<BossBehavior>().phaseNumber;
+            nextPhaseXP += 40 * Boss.GetComponent<BossBehavior>().phaseNumber;
             NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
         }
     }

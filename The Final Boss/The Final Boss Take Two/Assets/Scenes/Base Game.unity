@@ -5669,6 +5669,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossAnimate
       objectReference: {fileID: 0}
+    - target: {fileID: 5674882675629353861, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6023699498310559281, guid: f21e3e910d5e1f1418803d6bc1c16e75, type: 3}
+    - target: {fileID: 5674882675629353861, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
 --- !u!1001 &6161296076140690858

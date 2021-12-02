@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3107749417695800613}
   - component: {fileID: 1293722046}
   - component: {fileID: 1293722045}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Capsule (1)
   m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980101193766156732}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 4079894094218733180}
   - component: {fileID: 888416920}
   - component: {fileID: 888416919}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Capsule (3)
   m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4727653053678755350}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 5421500629260428484}
   - component: {fileID: 653649389}
   - component: {fileID: 653649388}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Capsule (2)
   m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5071800381847129579}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 1210594377519864480}
   - component: {fileID: 1323266153}
   - component: {fileID: 1323266152}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Capsule
   m_TagString: SpecialBossProjectile
   m_Icon: {fileID: 0}
@@ -535,7 +535,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678437312248697941}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -629,6 +629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c898417b2d1903b4ebd32d5c0983f832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sucked: 0
+  paused: 0
+  psup: 0
   self: {fileID: 9129314661304629619}
   VA: {fileID: 306039401087568624}
   VL1: {fileID: 1210594377519864480}
@@ -805,7 +808,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 4483504832982471387, guid: 92c4dbae10cfedf45a8341fc2dcd2b7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -16,10 +16,14 @@ public class BossAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        self.transform.Translate(Vector2.down/speed);
-        if (self.transform.position.y <= -12)
+        if (speed != 0)
         {
-            Destroy(self);
+            self.transform.Translate(Vector2.down / speed);
+            if (self.transform.position.y <= -12)
+            {
+                Destroy(self);
+            }
         }
+        
     }
 }
