@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
 {
+    public Sprite Left, Middle, Right;
     public bool paused = false;
     public AudioSource synth, BigShot, BasicShot, Lazer, hit;
     public int phaseNumber, phaseType, totalPhase;//Phase type: 0=basic, 1= big, 2=Lazer, 3=vortex, 4=safe Zone

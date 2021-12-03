@@ -1848,6 +1848,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 533088138, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 934677807, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1727039396781864347, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: player
       value: 
@@ -1856,10 +1864,6 @@ PrefabInstance:
       propertyPath: nextPhase
       value: 
       objectReference: {fileID: 1608223174}
-    - target: {fileID: 1727039396781864347, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
-      propertyPath: totalPhase
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1727039396781864347, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: currentPhase
       value: 
@@ -1872,10 +1876,6 @@ PrefabInstance:
       propertyPath: totalPhaseTXT
       value: 
       objectReference: {fileID: 746892595}
-    - target: {fileID: 1727039396781864347, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
-      propertyPath: gUI.Array.size
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 1727039396781864347, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[0]
       value: 
@@ -1967,14 +1967,6 @@ PrefabInstance:
     - target: {fileID: 4870821223349126399, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: m_Name
       value: BossAnimate
-      objectReference: {fileID: 0}
-    - target: {fileID: 5674882675629353861, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6023699498310559281, guid: f21e3e910d5e1f1418803d6bc1c16e75, type: 3}
-    - target: {fileID: 5674882675629353861, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
