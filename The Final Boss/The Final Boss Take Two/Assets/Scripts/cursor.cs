@@ -10,6 +10,7 @@ public class cursor : MonoBehaviour
     public GameObject self;
     private float horz, vert;
     public float speedMod = 1;
+    public Vector3 spawn = new Vector3(6.98999977f, -0.379999995f, 0f);
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class cursor : MonoBehaviour
     {
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-        self.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
+        self.transform.Translate(new Vector2(horz, vert) * /*Time.deltaTime */ speedMod);
         if (Input.GetAxis("Mouse X") != 0||Input.GetAxis("Mouse Y")!=0)
         {
             self.transform.position.Set(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
@@ -32,6 +33,10 @@ public class cursor : MonoBehaviour
         }
 
     }
+    public void newMenu()
+    {
+        self.transform.SetPositionAndRotation(spawn, new Quaternion());
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("MenuButtons"))
@@ -40,6 +45,7 @@ public class cursor : MonoBehaviour
             onButton = true;
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
