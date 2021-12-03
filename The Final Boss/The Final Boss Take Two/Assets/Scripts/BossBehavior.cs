@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
 {
+    private bool Tutorial;
     public Sprite Left, Middle, Right;
     public bool paused = false;
     public AudioSource synth, BigShot, BasicShot, Lazer, hit;
@@ -24,8 +25,17 @@ public class BossBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (self.GetComponent<WouldMyProfessorFindThisFunny>() != null)
+        {
+            Tutorial = true;
+        }
+        else
+        {
+            Tutorial = false;
+        }
         //Boss comes in and starts monolouge (attack boss to skip)
-        StartCoroutine("Monolouge");
+        if (!Tutorial) { StartCoroutine("Monolouge"); }
+
     }
 
     // Update is called once per frame

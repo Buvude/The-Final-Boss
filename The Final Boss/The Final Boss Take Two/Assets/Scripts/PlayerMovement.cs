@@ -293,15 +293,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!paused)
             {
+                Time.timeScale = 0;
                 paused = true;
-                TutorialPause();
-                Music.Pause();
+                /*TutorialPause();
+                Music.Pause();*/
             }
             else if (paused)
             {
+                Time.timeScale = 1;
                 paused = false;
-                TutorialUnpause();
-                Music.UnPause();
+                /*TutorialUnpause();
+                Music.UnPause();*/
             }
         }
 

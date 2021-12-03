@@ -22,7 +22,7 @@ public class cursor : MonoBehaviour
     {
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-        self.transform.Translate(new Vector2(horz, vert) * /*Time.deltaTime */ speedMod);
+        self.transform.Translate(new Vector2(horz, vert) * /*Time.deltaTime */ speedMod/100);
         if (Input.GetAxis("Mouse X") != 0||Input.GetAxis("Mouse Y")!=0)
         {
             self.transform.position.Set(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
