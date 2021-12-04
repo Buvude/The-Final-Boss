@@ -20,9 +20,28 @@ public class cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+         * Bounds setting
+         */
+        if (self.transform.position.x >= 15.76)
+        {
+            self.transform.Translate(-1f, 0, 0);
+        }
+        if (self.transform.position.x <= -15.77)
+        {
+            self.transform.Translate(1f, 0, 0);
+        }
+        if (self.transform.position.y >= 8.06)
+        {
+            self.transform.Translate(0, -1f, 0);
+        }
+        if (self.transform.position.y <= -8.03)
+        {
+            self.transform.Translate(0, 1f, 0);
+        }
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-        self.transform.Translate(new Vector2(horz, vert) * /*Time.deltaTime */ speedMod/100);
+        self.transform.Translate(new Vector2(horz, vert) * /*Time.deltaTime */ speedMod/110);
         if (Input.GetAxis("Mouse X") != 0||Input.GetAxis("Mouse Y")!=0)
         {
             self.transform.position.Set(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool paused = false;
+    public bool paused = false, sandbox = false;
     public List<GameObject> pauseListPlayer = new List<GameObject>();
     public Animator megaCounterAnimations;
     public bool CounterDone = true;
@@ -160,25 +160,28 @@ public class PlayerMovement : MonoBehaviour
         /*
          * upgrade text end
          */
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (sandbox)
         {
-            if (Boss.GetComponent<BossBehavior>().phaseType == 4)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                Boss.GetComponent<BossBehavior>().phaseType = 0;
+                if (Boss.GetComponent<BossBehavior>().phaseType == 4)
+                {
+                    Boss.GetComponent<BossBehavior>().phaseType = 0;
+                }
+                else
+                {
+                    Boss.GetComponent<BossBehavior>().phaseType += 1;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                Boss.GetComponent<BossBehavior>().phaseType += 1;
+                Boss.GetComponent<BossBehavior>().phaseNumber += 1;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Boss.GetComponent<BossBehavior>().phaseNumber += 1;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            Boss.GetComponent<BossBehavior>().debugFire();
-        }//Debug Purposes only*/
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                Boss.GetComponent<BossBehavior>().debugFire();
+            }
+        }//*/
         /*
     * upgrades
     * */

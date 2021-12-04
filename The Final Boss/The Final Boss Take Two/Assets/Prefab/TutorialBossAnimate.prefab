@@ -22,7 +22,11 @@ MonoBehaviour:
   pL: 0
   pV: 0
   pSZ: 0
+  started: 0
+  sandbox: 0
   bb: {fileID: 5691603687628982558}
+  tutorialLevel: 0
+  pm: {fileID: 0}
 --- !u!1001 &6416237798082509957
 PrefabInstance:
   m_ObjectHideFlags: 0
