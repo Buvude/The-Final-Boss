@@ -7,18 +7,37 @@ public class SceneManagerClass : MonoBehaviour
 {
     
     private WouldMyProfessorFindThisFunny wmp;
-    public GameObject self;
+    public GameObject self, pausemenu;
     private int tutorialSet, TittleSet=0;
+    public PlayerMovement pm;
+    private bool paused=false;
     // Start is called before the first frame update
     void Start()
     {
+        
         DontDestroyOnLoad(self);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.timeScale==0)
+        {
+            if (!paused)
+            {
+                paused = true;
+            }
+            pausemenu.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                returnToTittle();
+            }
+        }
+        if (Time.timeScale == 1 && paused)
+        {
+            paused = false;
+            pausemenu.SetActive(false);
+        }
     }
     public void skipTutorial()
     {
@@ -28,6 +47,26 @@ public class SceneManagerClass : MonoBehaviour
     {
         tutorialSet = 0;
         SceneManager.LoadScene(2);
+    }
+    public void loadBasicAndSpecialAbilites()
+    {
+        tutorialSet = 1;
+        SceneManager.LoadScene(2);
+    }
+    public void loadBossPhaseTutorial()
+    {
+        tutorialSet = 2;
+        SceneManager.LoadScene(2);
+    }
+    public void loadSandbox()
+    {
+        tutorialSet = 3;
+        SceneManager.LoadScene(2);
+    }
+    public void returnToTittle()
+    {
+        TittleSet = 0;
+        SceneManager.LoadScene(0);
     }
     public void returnToBasicTutorialScreen()
     {
@@ -47,6 +86,21 @@ public class SceneManagerClass : MonoBehaviour
             case 0:
                 wmp = GameObject.Find("EventSystem").GetComponent<ALocalForTutorials>().wmp;
                 wmp.tutorialLevel = 0;
+                wmp.readyToStart = true;
+                break;
+            case 1:
+                wmp = GameObject.Find("EventSystem").GetComponent<ALocalForTutorials>().wmp;
+                wmp.tutorialLevel = 1;
+                wmp.readyToStart = true;
+                break;
+            case 2:
+                wmp = GameObject.Find("EventSystem").GetComponent<ALocalForTutorials>().wmp;
+                wmp.tutorialLevel = 2;
+                wmp.readyToStart = true;
+                break;
+            case 3:
+                wmp = GameObject.Find("EventSystem").GetComponent<ALocalForTutorials>().wmp;
+                wmp.tutorialLevel = 3;
                 wmp.readyToStart = true;
                 break;
         }
@@ -69,6 +123,9 @@ public class SceneManagerClass : MonoBehaviour
                 GameObject.Find("EventSystem").GetComponent<TittleScreenScript>().tutorialAdvanced.SetActive(true);
                 GameObject.Find("EventSystem").GetComponent<TittleScreenScript>().curse.newMenu();
                 break;
+
         }
+        Time.timeScale = 1;
+        pausemenu.SetActive(false);
     }
 }

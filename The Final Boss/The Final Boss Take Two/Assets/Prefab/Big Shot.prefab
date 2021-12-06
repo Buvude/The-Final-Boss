@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sucked: 0
   self: {fileID: 1022265594903397331}
-  speed: 5
+  speed: 20
 --- !u!70 &961462321023320784
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -58,11 +58,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: -0.0029438436, y: 0}
+  m_Size: {x: 0.5883147, y: 1}
   m_Direction: 0
 --- !u!1 &7586026649362637163
 GameObject:

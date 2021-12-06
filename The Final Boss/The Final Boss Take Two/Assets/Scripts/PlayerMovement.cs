@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //public GameObject PauseMenu;
     public bool paused = false, sandbox = false;
     public List<GameObject> pauseListPlayer = new List<GameObject>();
     public Animator megaCounterAnimations;
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public int XP, cooldownTime, nextPhaseXP, totalXP = 0, MP = 0, ItemsInStorage = 0;
     public int basicUpgradeCost = 10, specialUpgradeCost = 20, coreUpgradeCost = 50;
     private int basicUpgradeExponential, specialUpgradeExponential, coreUpgradeExponential;
-    private bool shootAgain = true, dead = false, canMove = false, sCSActive = false, sCDActive = false, sCCActive = false, specialOngoing = false;
+    public bool shootAgain = true, dead = false, canMove = false, sCSActive = false, sCDActive = false, sCCActive = false, specialOngoing = false;
     public int sCS, sCD, sCC;//special abilities counters
     private int sCTS, sCTD, sCTC;//special ability totals
     private float speedHolderB, speedHolderP;//to hold speed of projectiles when paused
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         XP = 0;
         nextPhaseXP = 40;
         NextPhaseXPTXT.text = "XP needed for next phase: " + nextPhaseXP;
+        //PauseMenu=GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().pausemenu;
     }
 
     // Update is called once per frame
@@ -84,19 +86,7 @@ public class PlayerMovement : MonoBehaviour
          * making sure your not dead and it's not the monolouge
          * also all player controls
          */
-        if (canMove && !dead)
-        {
-            AnimationHolder.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                if (shootAgain)//impliments a cooldown
-                {
-                    Fire.Play();
-                    StartCoroutine("cooldown");
-                    Instantiate(playerShot, AnimationHolder.transform);
-                }
-            }
-        }
+        
         /*
          * Player Control end
          * Upgrade text begin
@@ -241,6 +231,43 @@ public class PlayerMovement : MonoBehaviour
         /*
          * Abilities
          * */
+        if (canMove && !dead)//hoping putting abilities in here will prevent them from being used after death and such
+        {
+            AnimationHolder.transform.Translate(new Vector2(horz, vert) * Time.deltaTime * speedMod);
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                if (shootAgain)//impliments a cooldown
+                {
+                    Fire.Play();
+                    StartCoroutine("cooldown");
+                    Instantiate(playerShot, AnimationHolder.transform);
+                }
+            }
+           /* if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))//Basic Sheild
+            {
+                if (MP >= playerbD)
+                {
+                    MP -= playerbD;
+                    Sheild.GetComponent<Animator>().SetInteger("Shield Level", playerbD);
+                    Sheild.SetActive(true);
+                }
+            }
+            if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 1/2
+            {
+                //CounterDone = false;
+                suckySucky.SetActive(true);
+                megaCounterAnimations.SetTrigger("Normal");
+                StartCoroutine("CA");
+
+            }
+            if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 2/2
+            {
+                CounterDone = false;
+                StopCoroutine("CA");
+                StartCoroutine("FireOnMyMark");
+
+            }*/
+        }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))//Basic Sheild
         {
             if (MP >= playerbD)
@@ -292,12 +319,13 @@ public class PlayerMovement : MonoBehaviour
         /*
          * Pause buttons
          */
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P)||Input.GetKeyDown(KeyCode.Escape))
         {
             if (!paused)
             {
                 Time.timeScale = 0;
                 paused = true;
+                //PauseMenu.SetActive(true);
                 /*TutorialPause();
                 Music.Pause();*/
             }
@@ -305,6 +333,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Time.timeScale = 1;
                 paused = false;
+                //PauseMenu.SetActive(false);
                 /*TutorialUnpause();
                 Music.UnPause();*/
             }
@@ -583,21 +612,23 @@ private void OnTriggerStay2D(Collider2D collision)
             }
             else if(!collision.gameObject.CompareTag("SafeZone")&&!collision.gameObject.CompareTag("CAA"))
             {
-                Debug.Log("collision");
-                Debug.Log("Invalid Tag");
+                /*Debug.Log("collision");
+                Debug.Log("Invalid Tag");*/
             }
         }  
     }
     
     public void LossOfLife()
     {
+        
         if (!Immune&&!dead)
         {
             Hit.Play();
-            Debug.Log("Add death soon ");
-            self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            dead = true;
+            //Debug.Log("Add death soon ");
+           /* self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;*/
+            //dead = true;
             StartCoroutine("respawn");
+            
         }
     }
     public void BasicAttackXPGain()
@@ -663,17 +694,13 @@ private void OnTriggerStay2D(Collider2D collision)
         HP -= 1;
         if (HP >= 1)
         {
-            yield return new WaitForSeconds(3);
-            while (paused)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            dead = false;
-            self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            self.transform.localPosition = new Vector3(0f, 0f, 0f);
+            Immune = true;
+            yield return new WaitForSeconds(3f);
+            Immune = false;
         }
         else
         {
+            self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             StartCoroutine("GameOver");
             yield return new WaitForEndOfFrame();
         }
