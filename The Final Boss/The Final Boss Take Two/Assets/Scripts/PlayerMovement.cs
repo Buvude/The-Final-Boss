@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().pm = this;
         basicUpgradeExponential = basicUpgradeCost;
         specialUpgradeExponential = specialUpgradeCost;
         coreUpgradeExponential = coreUpgradeCost;
@@ -626,7 +627,7 @@ private void OnTriggerStay2D(Collider2D collision)
             Hit.Play();
             //Debug.Log("Add death soon ");
            /* self.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;*/
-            //dead = true;
+            dead = true;
             StartCoroutine("respawn");
             
         }
@@ -697,6 +698,7 @@ private void OnTriggerStay2D(Collider2D collision)
             Immune = true;
             yield return new WaitForSeconds(3f);
             Immune = false;
+            dead = false;
         }
         else
         {
@@ -706,7 +708,7 @@ private void OnTriggerStay2D(Collider2D collision)
         }
     }
     IEnumerator GameOver()
-    {
+    { 
         Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Game Over\n Score: " + totalXP.ToString();
         yield return new WaitForSeconds(3);
         Time.timeScale = 0;

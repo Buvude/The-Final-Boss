@@ -99,7 +99,7 @@ public class BossBehavior : MonoBehaviour
                 animationHolder.transform.Translate(player.transform.position.x - animationHolder.transform.position.x, 0f, 0f);
                 Instantiate(weaponType[phaseType], animationHolder.transform);
                 BasicShot.Play();
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(3);
                 while (paused)
                 {
                     yield return new WaitForEndOfFrame();
@@ -117,7 +117,7 @@ public class BossBehavior : MonoBehaviour
                 animationHolder.transform.Translate(player.transform.position.x - animationHolder.transform.position.x, 0f, 0f);
                 Instantiate(weaponType[1], animationHolder.transform);
                 BigShot.Play();
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(6);
                 while (paused)
                 {
                     yield return new WaitForEndOfFrame();

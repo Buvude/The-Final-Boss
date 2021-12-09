@@ -21,7 +21,7 @@ public class SceneManagerClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale==0)
+        if (Time.timeScale==0&&!pm.dead)
         {
             if (!paused)
             {
@@ -67,17 +67,20 @@ public class SceneManagerClass : MonoBehaviour
     {
         TittleSet = 0;
         SceneManager.LoadScene(0);
+        Destroy(self);
     }
     public void returnToBasicTutorialScreen()
     {
         TittleSet = 2;
         SceneManager.LoadScene(0);
+        Destroy(self);
     }
     public void returnToAdvancedTutorialScreen()
     {
         TittleSet = 3;
         SceneManager.LoadScene(0);
-       
+        Destroy(self);
+
     }
     public void tutorialLoaded()
     {

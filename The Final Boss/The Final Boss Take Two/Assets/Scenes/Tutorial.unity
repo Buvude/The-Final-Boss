@@ -1394,6 +1394,90 @@ PrefabInstance:
       propertyPath: totalPhaseTXT
       value: 
       objectReference: {fileID: 1696638966}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[0]
+      value: 
+      objectReference: {fileID: 1145458238}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[1]
+      value: 
+      objectReference: {fileID: 1145458237}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[2]
+      value: 
+      objectReference: {fileID: 1145458236}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[3]
+      value: 
+      objectReference: {fileID: 1145458235}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[4]
+      value: 
+      objectReference: {fileID: 1145458234}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[5]
+      value: 
+      objectReference: {fileID: 1145458233}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[6]
+      value: 
+      objectReference: {fileID: 1145458232}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[7]
+      value: 
+      objectReference: {fileID: 1145458231}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[8]
+      value: 
+      objectReference: {fileID: 1145458230}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[9]
+      value: 
+      objectReference: {fileID: 569005204}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[10]
+      value: 
+      objectReference: {fileID: 569005205}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[11]
+      value: 
+      objectReference: {fileID: 1145458238}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[12]
+      value: 
+      objectReference: {fileID: 1145458237}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[13]
+      value: 
+      objectReference: {fileID: 1145458236}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[14]
+      value: 
+      objectReference: {fileID: 1145458235}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[15]
+      value: 
+      objectReference: {fileID: 1145458234}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[16]
+      value: 
+      objectReference: {fileID: 1145458233}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[17]
+      value: 
+      objectReference: {fileID: 1145458232}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[18]
+      value: 
+      objectReference: {fileID: 1145458231}
+    - target: {fileID: 6875382053381489132, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
+      propertyPath: gUI.Array.data[19]
+      value: 
+      objectReference: {fileID: 1145458230}
     - target: {fileID: 7138155873031049272, guid: c942bd9b17aa4bb448fc79d0088a2de9, type: 3}
       propertyPath: pm
       value: 
