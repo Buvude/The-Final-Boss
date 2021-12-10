@@ -277,7 +277,7 @@ public class WouldMyProfessorFindThisFunny : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
-        onScreenText.text = "Now juststay away from the center and you should be fine!";
+        onScreenText.text = "Now just stay away from the center and you should be fine!";
         yield return new WaitForSeconds(5f);
         task5 = false;
         Laser = false;

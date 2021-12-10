@@ -643,17 +643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1608223174 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5239311617664702149, guid: c449c2e6055b010419354c8b3e22738f, type: 3}
-  m_PrefabInstance: {fileID: 5239311618254364419}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5239311618254364425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1726691893 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2469053100339297248, guid: 92a3dec08830bab418ba75755733f5fb, type: 3}
@@ -750,7 +739,7 @@ PrefabInstance:
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: nextPhase
       value: 
-      objectReference: {fileID: 1608223174}
+      objectReference: {fileID: 0}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: currentPhase
       value: 
@@ -763,6 +752,10 @@ PrefabInstance:
       propertyPath: totalPhaseTXT
       value: 
       objectReference: {fileID: 746892595}
+    - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
+      propertyPath: gUI.Array.size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[0]
       value: 
@@ -778,31 +771,31 @@ PrefabInstance:
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[3]
       value: 
-      objectReference: {fileID: 5239311618254364425}
+      objectReference: {fileID: 5239311618254364424}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[4]
       value: 
-      objectReference: {fileID: 5239311618254364424}
+      objectReference: {fileID: 5239311618254364423}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[5]
       value: 
-      objectReference: {fileID: 5239311618254364423}
+      objectReference: {fileID: 5239311618254364422}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[6]
       value: 
-      objectReference: {fileID: 5239311618254364422}
+      objectReference: {fileID: 5239311618254364421}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[7]
       value: 
-      objectReference: {fileID: 5239311618254364421}
+      objectReference: {fileID: 5239311618254364420}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[8]
       value: 
-      objectReference: {fileID: 5239311618254364420}
+      objectReference: {fileID: 2469053102056522199}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[9]
       value: 
-      objectReference: {fileID: 2469053102056522199}
+      objectReference: {fileID: 2469053102056522198}
     - target: {fileID: 459734143455083881, guid: 7833cd36107c40149bffddb80f97fa84, type: 3}
       propertyPath: gUI.Array.data[10]
       value: 
@@ -1088,11 +1081,6 @@ GameObject:
 --- !u!1 &5239311618254364424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5239311617910665778, guid: c449c2e6055b010419354c8b3e22738f, type: 3}
-  m_PrefabInstance: {fileID: 5239311618254364419}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5239311618254364425 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5239311617664702151, guid: c449c2e6055b010419354c8b3e22738f, type: 3}
   m_PrefabInstance: {fileID: 5239311618254364419}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5239311618254364426 stripped

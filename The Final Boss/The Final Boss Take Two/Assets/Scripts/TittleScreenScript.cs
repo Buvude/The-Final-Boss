@@ -11,12 +11,16 @@ public class TittleScreenScript : MonoBehaviour
     public Text Explanation;
     public bool unlock1, unlock2, finalUnlock;
     public Text unlock1txt, unlock2txt, unlock3txt;
-    public Button unlock1btn, unlock2btn, unlock3btn, WhoKnows, WhoActuallyKnowstho;
+    public Button unlock1btn, unlock2btn, unlock3btn, WhoKnows, WhoActuallyKnowstho, reallyWhoKnows, reallyIDontEvenKnow;
     // Start is called before the first frame update
     void Start()
     {
+        
         smc = GameObject.Find("SceneManager").GetComponent<SceneManagerClass>();
         smc.TittleLoaded();
+        unlock1 = smc.score1;
+        unlock2 = smc.score2;
+        finalUnlock = smc.score3;
     }
 
     // Update is called once per frame
@@ -44,6 +48,8 @@ public class TittleScreenScript : MonoBehaviour
         {
             unlock3txt.text = "Lore 3/3 unlocked\n" +
                 "Lore tutorial now active";
+            reallyWhoKnows.gameObject.SetActive(true);
+            reallyIDontEvenKnow.gameObject.SetActive(false);
         }
     }
 }

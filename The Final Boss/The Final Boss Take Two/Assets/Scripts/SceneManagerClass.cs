@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerClass : MonoBehaviour
 {
-    
+    public bool score1, score2, score3, killTheBoss;
     private WouldMyProfessorFindThisFunny wmp;
     public GameObject self, pausemenu;
     private int tutorialSet, TittleSet=0;
@@ -21,6 +21,10 @@ public class SceneManagerClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (score1 && score2 && score3)
+        {
+            killTheBoss = true;
+        }
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByBuildIndex(0)))
         {
             Application.Quit();

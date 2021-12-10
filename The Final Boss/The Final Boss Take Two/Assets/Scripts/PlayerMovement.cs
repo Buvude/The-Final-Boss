@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int attackXPNeeded = 100, MegaBlastsNeeded = 20, MegaBlockNeeded = 10, MegaCounterNeeded = 5;
+    private int attackXPGained = 0, megaBlastsGained = 0, MegaBlockGained = 0, megaCounterGained = 0;
+    private bool attackXPThreshold = false, megaBlastThreshold = false, megaBlockThreshold = false, megaCounterThreshold = false;
     //public GameObject PauseMenu;
     public bool paused = false, sandbox = false;
     public List<GameObject> pauseListPlayer = new List<GameObject>();
@@ -42,6 +45,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attackXPGained = totalXP;
+        if (GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().killTheBoss)
+        {
+            if (attackXPGained >= attackXPNeeded && !attackXPThreshold)
+            {
+                attackXPThreshold = true;
+            }
+            if (MegaBlockGained >= MegaBlastsNeeded && !megaBlastThreshold)
+            {
+                megaBlastThreshold = true;
+            }
+            if (MegaBlockGained >= MegaBlockNeeded && !megaBlockThreshold)
+            {
+                megaBlockThreshold = true;
+            }
+            if (megaCounterGained >= MegaCounterNeeded && !megaCounterThreshold)
+            {
+                megaCounterThreshold = true;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().reloadScene();
@@ -306,11 +329,13 @@ public class PlayerMovement : MonoBehaviour
             sCSActive = false;
             specialOngoing = false;
             sCS = 0;
+            megaBlastsGained++;
         }
         if ((Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.KeypadPeriod)) && sCDActive && !specialOngoing)
         {
             specialOngoing = true;
             StartCoroutine("MegaSheild");
+            MegaBlockGained++;
         }
         if ((Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.KeypadPlus)) && sCCActive && !specialOngoing)
         {
@@ -319,6 +344,7 @@ public class PlayerMovement : MonoBehaviour
             MegaCounter.SetActive(true);
             megaCounterAnimations.SetTrigger("Mega");
             StartCoroutine("MegaCounterEvent");
+            megaCounterGained++;
         }
 
         /*
