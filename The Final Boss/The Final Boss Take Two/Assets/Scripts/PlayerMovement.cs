@@ -42,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().reloadScene();
+        }
         sCTS = playersS * 5;
         sCTD = playersD * 5;
         sCTC = playersC * 5;
@@ -709,7 +713,7 @@ private void OnTriggerStay2D(Collider2D collision)
     }
     IEnumerator GameOver()
     { 
-        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Game Over\n Score: " + totalXP.ToString();
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Game Over\n Score: Press R at any time to restart " + totalXP.ToString();
         yield return new WaitForSeconds(3);
         Time.timeScale = 0;
         Boss.GetComponent<BossBehavior>().monolaougeTXT.gameObject.SetActive(true);

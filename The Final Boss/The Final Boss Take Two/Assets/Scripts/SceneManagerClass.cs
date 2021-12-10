@@ -21,6 +21,11 @@ public class SceneManagerClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByBuildIndex(0)))
+        {
+            Application.Quit();
+            Debug.Log("Quit");
+        }
         if (Time.timeScale==0&&!pm.dead)
         {
             if (!paused)
@@ -130,5 +135,9 @@ public class SceneManagerClass : MonoBehaviour
         }
         Time.timeScale = 1;
         pausemenu.SetActive(false);
+    }
+    public void reloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

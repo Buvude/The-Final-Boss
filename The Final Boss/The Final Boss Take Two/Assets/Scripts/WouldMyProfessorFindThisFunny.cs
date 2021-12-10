@@ -123,6 +123,9 @@ public class WouldMyProfessorFindThisFunny : MonoBehaviour
                     pm.HP = 99999999;
                     pm.MP = 99999999;
                     bb.bAM.toggleSidetoSideIdle();
+                    pm.canMoveSet();
+                    spawnGUI();
+                    onScreenText.gameObject.SetActive(false);
                     break;
             }
         }
