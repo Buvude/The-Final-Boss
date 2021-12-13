@@ -621,7 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dc07f656e10fb4c9cd9b58d5d9e868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presetHSList: e8030000f40100000a000000
+  presetHSList: e8030000f401000064000000
   highScores: 000000000000000000000000
   PlayerHeld: 000000
   score1: 0
