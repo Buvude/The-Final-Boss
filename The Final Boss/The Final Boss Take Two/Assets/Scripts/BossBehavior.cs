@@ -47,23 +47,23 @@ public class BossBehavior : MonoBehaviour
         {
             case 0:
                 currentPhase.text = "Current phase: Basic shot";
-                nextPhase.text = "Next phase: Big shot";
+                //nextPhase.text = "Next phase: Big shot";
                 break;
             case 1:
                 currentPhase.text = "Current phase: Big shot";
-                nextPhase.text = "Next phase: Lazer cannons";
+               //nextPhase.text = "Next phase: Lazer cannons";
                 break;
             case 2:
                 currentPhase.text = "Current phase: Lazer cannons";
-                nextPhase.text = "Next phase: Vortex";
+                //nextPhase.text = "Next phase: Vortex";
                 break;
             case 3:
                 currentPhase.text = "Current phase: Vortex";
-                nextPhase.text = "Next phase: Safe Zone";
+                //nextPhase.text = "Next phase: Safe Zone";
                 break;
             case 4:
                 currentPhase.text = "Current phase: Safe Zone";
-                nextPhase.text = "Next phase: Basic shot";
+                //nextPhase.text = "Next phase: Basic shot";
                 break;
         }
     }

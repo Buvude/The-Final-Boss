@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public SceneManagerClass smc;
     public int attackXPNeeded = 100, MegaBlastsNeeded = 20, MegaBlockNeeded = 10, MegaCounterNeeded = 5;
     private int attackXPGained = 0, megaBlastsGained = 0, MegaBlockGained = 0, megaCounterGained = 0;
-    private bool attackXPThreshold = false, megaBlastThreshold = false, megaBlockThreshold = false, megaCounterThreshold = false;
+    public bool attackXPThreshold = false, megaBlastThreshold = false, megaBlockThreshold = false, megaCounterThreshold = false, omegaThreshold = false, ultraOmegaThreshold;
+    //thresholds mean that that aspect of the stuff is ready for the super attack to kill the boss
+    //private bool attackXPThresholdCleared = false, megaBlastThresholdCleared = false, megaBlockThresholdCleared = false, megaCounterThresholdCleared = false;
     //public GameObject PauseMenu;
     public bool paused = false, sandbox = false;
     public List<GameObject> pauseListPlayer = new List<GameObject>();
@@ -29,10 +32,13 @@ public class PlayerMovement : MonoBehaviour
     public int sCS, sCD, sCC;//special abilities counters
     private int sCTS, sCTD, sCTC;//special ability totals
     private float speedHolderB, speedHolderP;//to hold speed of projectiles when paused
+    public Text bossMonologue;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().pm = this;
+        bossMonologue = Boss.GetComponent<BossBehavior>().monolaougeTXT;
+        smc = GameObject.Find("SceneManager").GetComponent<SceneManagerClass>();
+        smc.pm = this;
         basicUpgradeExponential = basicUpgradeCost;
         specialUpgradeExponential = specialUpgradeCost;
         coreUpgradeExponential = coreUpgradeCost;
@@ -46,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         attackXPGained = totalXP;
-        if (GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().killTheBoss)
+        if (/*GameObject.Find("SceneManager").GetComponent<SceneManagerClass>().killTheBoss*/true)
         {
             if (attackXPGained >= attackXPNeeded && !attackXPThreshold)
             {
@@ -64,6 +70,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 megaCounterThreshold = true;
             }
+            if (attackXPThreshold && megaBlockThreshold && megaBlockThreshold && megaCounterThreshold&&!omegaThreshold)
+            {
+                StartCoroutine("SuperMegaUltraOmegaInsertAwesomeNameHereAttack");
+                omegaThreshold = true;
+            }
+        }
+        if ((Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.Z)) && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Keypad2)) && (Input.GetKey(KeyCode.Keypad3) || Input.GetKey(KeyCode.C))&&omegaThreshold&&!ultraOmegaThreshold)
+        {
+            ultraOmegaThreshold=true;
+            TutorialPause();
+            canMove = false;
+            smc.pausemenu.gameObject.SetActive(false);
+            bossMonologue.gameObject.SetActive(true);
+            bossMonologue.text = "NOOOOOOOOOOOOOOOOOOOOOOOO\n" +
+                "You have found my only weakness!!! I will now die in 5 seconds!";
+            StartCoroutine("WaitWhat");
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -296,6 +318,10 @@ public class PlayerMovement : MonoBehaviour
 
             }*/
         }
+        if (dead && (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Keypad1)))
+        {
+            smc.returnToTittle();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))//Basic Sheild
         {
             if (MP >= playerbD)
@@ -370,6 +396,65 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+    IEnumerator WaitWhat()
+    {
+        StopCoroutine("SuperMegaUltraOmegaInsertAwesomeNameHereAttack");
+        yield return new WaitForSeconds(5f);
+        bossMonologue.text = "Is what you want me to say right?\n" +
+            "I'm not that stupid, I saw what you were planning, and I have a counter offer...";
+        yield return new WaitForSeconds(5f);
+        bossMonologue.text = "How about you face me in a bit of a different battle field? How about one that... i don't know... spins!";
+        yield return new WaitForSeconds(5f);
+        totalXP += 999999;
+        bossMonologue.text = "new Score of " + totalXP + "Will be added to leaderboard, if applicable\n" +
+            "Return when full game releases to continue!";
+        yield return new WaitForSeconds(5f);
+        if (totalXP > smc.highScores[0])
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "New highscore on the leaderboard! Check it out on the main menu!";
+            smc.highScores.Insert(0, totalXP);
+            smc.highScores.RemoveAt(3);
+            if (smc.PlayerHeld[0])
+            {
+                smc.PlayerHeld[1] = true;
+            }
+            smc.PlayerHeld[0] = true;
+        }
+        else if (totalXP > smc.highScores[1])
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "New Second Place score on the leaderboard! Check it out on the main menu!";
+            smc.highScores.Insert(1, totalXP);
+            smc.highScores.RemoveAt(3);
+            if (smc.PlayerHeld[1])
+            {
+                smc.PlayerHeld[2] = true;
+            }
+            smc.PlayerHeld[1] = true;
+        }
+        else if (totalXP > smc.highScores[2])
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "New Third Place score on the leaderboard! Check it out on the main menu!";
+            smc.highScores.Insert(2, totalXP);
+            smc.highScores.RemoveAt(3);
+            smc.PlayerHeld[2] = true;
+        }
+        smc.Save();
+        yield return new WaitForSeconds(5f);
+        smc.returnToTittle();
+    }
+    IEnumerator SuperMegaUltraOmegaInsertAwesomeNameHereAttack()
+    {
+        bossMonologue.gameObject.SetActive(true);
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.enabled = true;
+        for (int i = 0; i < 10; i++)
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Error...\n" +
+                "Sending report in " + (10 - i) + " seconds.";
+            yield return new WaitForSeconds(1f);
+        }
+        Application.Quit();
+        Debug.Log("Game 'crashed'");
     }
 
     IEnumerator MegaCounterEvent()
@@ -739,10 +824,44 @@ private void OnTriggerStay2D(Collider2D collision)
     }
     IEnumerator GameOver()
     { 
-        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Game Over\n Score: Press R at any time to restart " + totalXP.ToString();
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "Game Over\n Press R at any time to restart, or press fire to return to main menu, please wait for highscore to be recorded \nScore:" + totalXP.ToString();
+        Boss.GetComponent<BossBehavior>().monolaougeTXT.gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         Time.timeScale = 0;
-        Boss.GetComponent<BossBehavior>().monolaougeTXT.gameObject.SetActive(true);
+        if (totalXP > smc.highScores[0])
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "New highscore on the leaderboard! Check it out on the main menu!";
+            smc.highScores.Insert(0, totalXP);
+            smc.highScores.RemoveAt(3);
+            if (smc.PlayerHeld[0])
+            {
+                smc.PlayerHeld[1] = true;
+            }
+            smc.PlayerHeld[0] = true;
+        }
+        else if (totalXP > smc.highScores[1])
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "New Second Place score on the leaderboard! Check it out on the main menu!";
+            smc.highScores.Insert(1, totalXP);
+            smc.highScores.RemoveAt(3);
+            if (smc.PlayerHeld[1])
+            {
+                smc.PlayerHeld[2] = true;
+            }
+            smc.PlayerHeld[1] = true;
+        }
+        else if (totalXP > smc.highScores[2])
+        {
+            Boss.GetComponent<BossBehavior>().monolaougeTXT.text = "New Third Place score on the leaderboard! Check it out on the main menu!";
+            smc.highScores.Insert(2, totalXP);
+            smc.highScores.RemoveAt(3);
+            smc.PlayerHeld[2] = true;
+        }
+        smc.Save();
+        smc.pausemenu.gameObject.SetActive(true);
+        smc.PauseText.enabled = false;
+        dead = true;
+        /*Destroy(this.gameObject);*/
         foreach (GameObject go in Boss.GetComponent<BossBehavior>().gUI)
         {
             go.SetActive(false);

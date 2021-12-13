@@ -536,6 +536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30bdbc71ac1cc641b9a559b35741cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score1: {fileID: 504440440}
+  Score2: {fileID: 2114937632}
+  Score3: {fileID: 1588031857}
   tittle: {fileID: 1125614072}
   scoreboard: {fileID: 1171261078}
   tutorialStart: {fileID: 5876615610407802644}
@@ -556,6 +559,17 @@ MonoBehaviour:
   WhoActuallyKnowstho: {fileID: 1711104204}
   reallyWhoKnows: {fileID: 1210615813}
   reallyIDontEvenKnow: {fileID: 584840326}
+--- !u!114 &504440440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4641611181135061856, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+  m_PrefabInstance: {fileID: 5876615610407802643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &552592440 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2692953087453318615, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
@@ -607,13 +621,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dc07f656e10fb4c9cd9b58d5d9e868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score1: 1
-  score2: 1
-  score3: 1
+  presetHSList: e8030000f40100000a000000
+  highScores: 000000000000000000000000
+  PlayerHeld: 000000
+  score1: 0
+  score2: 0
+  score3: 0
   killTheBoss: 0
   self: {fileID: 731634603}
   pausemenu: {fileID: 405047384}
   pm: {fileID: 0}
+  PauseText: {fileID: 1536904936}
 --- !u!4 &731634605
 Transform:
   m_ObjectHideFlags: 0
@@ -722,6 +740,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1536904936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4111414351458787108, guid: 5f663e1169a79d74e81d62f6b57cc5cc, type: 3}
+  m_PrefabInstance: {fileID: 405047383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1588031857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5178457099158375508, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+  m_PrefabInstance: {fileID: 5876615610407802643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1711104204 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1711104204, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
@@ -755,6 +795,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2114937632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4332207274565359801, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+  m_PrefabInstance: {fileID: 5876615610407802643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5876615610407802643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -782,8 +833,12 @@ PrefabInstance:
         Fun
         fact: Use the Mega Counter 5 times
 
-        Fun fact: press all 3 basic ability
-        buttons at once to end it all'
+        Fun fact: When "Error" is shown
+        on screen, press all 3 basic ability buttons at once to end it all
+
+        Fun
+        fact: If you wait for more than ten seconds, the boss will notice and the
+        game will crash...'
       objectReference: {fileID: 0}
     - target: {fileID: 1766499473, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -813,6 +868,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 118435350}
+    - target: {fileID: 7095885525220601281, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 547.2884
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095885525220601281, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 79.4991
+      objectReference: {fileID: 0}
+    - target: {fileID: 7095885525220601281, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.3378
+      objectReference: {fileID: 0}
     - target: {fileID: 7377654924840954317, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -916,6 +983,34 @@ PrefabInstance:
     - target: {fileID: 8344669236936574264, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900564467323748904, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 547.2884
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900564467323748904, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 79.4991
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900564467323748904, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.3378
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900564467323748904, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188188948016155990, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 547.2884
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188188948016155990, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 79.4991
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188188948016155990, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.3378
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69fa0d9c2d60a14bbfab8aa1e33adb3, type: 3}
