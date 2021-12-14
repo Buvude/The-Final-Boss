@@ -7,7 +7,7 @@ public class TittleScreenScript : MonoBehaviour
 {
     public Text Score1, Score2, Score3;
     public GameObject tittle, scoreboard, tutorialStart, tuturialBasic, tutorialAdvanced;//different pages
-    private SceneManagerClass smc;
+    public SceneManagerClass smc;
     public cursor curse;
     public Text Explanation;
     public bool unlock1, unlock2, finalUnlock;
@@ -16,9 +16,15 @@ public class TittleScreenScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        smc = GameObject.Find("SceneManager").GetComponent<SceneManagerClass>();
-        smc.TittleLoaded();
+        foreach(SceneManagerClass smctemp in GameObject.FindObjectsOfType<SceneManagerClass>())
+        {
+            if (smctemp.isOG())
+            {
+                smctemp.TittleLoaded();
+            }
+        }
+        //smc = GameObject.Find("SceneManager").GetComponent<SceneManagerClass>();
+        /*smc.TittleLoaded();*/
     }
 
     // Update is called once per frame

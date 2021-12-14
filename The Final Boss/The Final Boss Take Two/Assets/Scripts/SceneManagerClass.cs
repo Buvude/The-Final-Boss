@@ -15,21 +15,29 @@ public class SceneManagerClass : MonoBehaviour
     private int tutorialSet, TittleSet=0;
     public PlayerMovement pm;
     public Text PauseText;
-    private bool paused=false;
+    private bool paused = false, OG = false;
     // Start is called before the first frame update
     void Start()
     {
+        PauseText.enabled = true;
+        pausemenu.SetActive(false);
+        GameObject.Find("EventSystem").GetComponent<TittleScreenScript>().smc = this;
         try
         {
             LoadOnOpen();
+            if (highScores[0] == 0)
+            {
+                ResetSaveData();
+            }
         }
         catch (System.Exception)
         {
-            for (int i = 0; i < highScores.Count; i++)
+            /*for (int i = 0; i < highScores.Count; i++)
             {
                 highScores[i] = presetHSList[i];
                 PlayerHeld[i] = false;
-            }
+            }*/
+            ResetSaveData();
             throw;
         }
         for (int i = 0; i < PlayerHeld.Count; i++)
@@ -87,6 +95,10 @@ public class SceneManagerClass : MonoBehaviour
             pausemenu.SetActive(false);
         }
     }
+    public bool isOG()
+    {
+        return OG;
+    }
     public void ResetSaveData()
     {
         for (int i = 0; i < highScores.Count; i++)
@@ -127,19 +139,19 @@ public class SceneManagerClass : MonoBehaviour
     {
         TittleSet = 0;
         SceneManager.LoadScene(0);
-        Destroy(self);
+        OG = true;
     }
     public void returnToBasicTutorialScreen()
     {
         TittleSet = 2;
         SceneManager.LoadScene(0);
-        Destroy(self);
+        OG = true;
     }
     public void returnToAdvancedTutorialScreen()
     {
         TittleSet = 3;
         SceneManager.LoadScene(0);
-        Destroy(self);
+        OG = true;
 
     }
     public void tutorialLoaded()
@@ -191,6 +203,10 @@ public class SceneManagerClass : MonoBehaviour
         Time.timeScale = 1;
         PauseText.enabled = true;
         pausemenu.SetActive(false);
+        if (OG)
+        {
+            Destroy(self);
+        }
     }
     public void reloadScene()
     {

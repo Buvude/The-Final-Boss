@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         if (sCC >= sCTC && !sCCActive)
         {
             sCCActive = true;
-            Leveloutput[22].text = "Special Sheild is Active!";
+            Leveloutput[22].text = "Special Counter is Active!";
         }
         else if (sCC < sCTC)
         {
@@ -690,6 +690,8 @@ public class PlayerMovement : MonoBehaviour
             sonOfSuckySucky.GetComponent<Animator>().enabled = true;
             megaCounterAnimations.SetTrigger("Normal");
             //sonOfSuckySucky.GetComponent<Animator>().SetTrigger("fireTheStorage);
+            yield return new WaitForSeconds(5f);
+            CounterDone = true;//Just in case you miss with the laser
 
         }
         else
@@ -777,6 +779,7 @@ private void OnTriggerStay2D(Collider2D collision)
         XP += 3*playerbC * atk;
         totalXP += 3 * playerbC * atk;
         sCC += playerbC * atk;
+        CounterDone = true;
     }
     public void MegaCounterXPGain()
     {
@@ -856,6 +859,10 @@ private void OnTriggerStay2D(Collider2D collision)
             smc.highScores.Insert(2, totalXP);
             smc.highScores.RemoveAt(3);
             smc.PlayerHeld[2] = true;
+        }
+        else
+        {
+            bossMonologue.text = "No score added to the leaderboard, press fire to return to main menu or 'R' to restart";
         }
         smc.Save();
         smc.pausemenu.gameObject.SetActive(true);

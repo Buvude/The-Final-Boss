@@ -167,9 +167,9 @@ public class WouldMyProfessorFindThisFunny : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
-        onScreenText.text = "Great job! You'll notice that onscreen instructions have speared to show you the controls and other information";
-        yield return new WaitForSeconds(5f);
         spawnGUI();
+        onScreenText.text = "Great job! You'll notice that onscreen instructions have apeared to show you the controls and other information";
+        yield return new WaitForSeconds(5f);
         onScreenText.text = "These will apear during normal gameplay... In 5 seconds you will return to the tutorial screen!";
         yield return new WaitForSeconds(5f);
         smc.returnToBasicTutorialScreen();
