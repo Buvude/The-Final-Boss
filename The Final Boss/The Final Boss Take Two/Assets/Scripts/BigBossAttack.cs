@@ -19,7 +19,7 @@ public class BigBossAttack : MonoBehaviour
         if (speed != 0)
         {
 
-            self.transform.Translate(Vector2.down / speed);
+            self.transform.Translate(Vector2.down / speed /** Time.deltaTime*/);
             if (self.transform.position.y <= -12/*||self.transform.position.y>= 20*/)
             {
                 Destroy(self);

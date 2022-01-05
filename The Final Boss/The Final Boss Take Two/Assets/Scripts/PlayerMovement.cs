@@ -322,7 +322,7 @@ public class PlayerMovement : MonoBehaviour
         {
             smc.returnToTittle();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))//Basic Sheild
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Keypad2))//Basic Sheild
         {
             if (MP >= playerbD)
             {
@@ -331,7 +331,7 @@ public class PlayerMovement : MonoBehaviour
                 Sheild.SetActive(true);
             }
         }
-        if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 1/2
+        if (Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 1/2
         {
             //CounterDone = false;
             suckySucky.SetActive(true);
@@ -339,7 +339,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine("CA");
 
         }
-        if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 2/2
+        if (Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Keypad3) && CounterDone)// Basic Counter-Attack part 2/2
         {
             CounterDone = false;
             StopCoroutine("CA");
